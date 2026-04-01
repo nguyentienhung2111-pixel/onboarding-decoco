@@ -1,0 +1,564 @@
+[
+  {
+    "id": "quiz1",
+    "documentId": "doc1",
+    "title": "Quiz: Giới thiệu về công ty DECOCO",
+    "passingScore": 7.0,
+    "timeLimitMinutes": null,
+    "isActive": true,
+    "questions": [
+      {
+        "id": "q1_1",
+        "questionText": "DECOCO được thành lập vào năm nào?",
+        "questionType": "single_choice",
+        "explanation": "DECOCO được thành lập từ năm 2018.",
+        "options": [
+          { "id": "q1_1_a", "text": "2015", "isCorrect": false },
+          { "id": "q1_1_b", "text": "2018", "isCorrect": true },
+          { "id": "q1_1_c", "text": "2020", "isCorrect": false },
+          { "id": "q1_1_d", "text": "2016", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_2",
+        "questionText": "DECOCO hoạt động chính trong mấy mảng sản phẩm?",
+        "questionType": "single_choice",
+        "explanation": "DECOCO hoạt động trong 2 mảng: Trang trí nội thất và Mỹ phẩm & Chăm sóc cá nhân.",
+        "options": [
+          { "id": "q1_2_a", "text": "1 mảng", "isCorrect": false },
+          { "id": "q1_2_b", "text": "2 mảng", "isCorrect": true },
+          { "id": "q1_2_c", "text": "3 mảng", "isCorrect": false },
+          { "id": "q1_2_d", "text": "4 mảng", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_3",
+        "questionText": "Đâu KHÔNG phải là giá trị cốt lõi của DECOCO?",
+        "questionType": "single_choice",
+        "explanation": "4 giá trị cốt lõi của DECOCO: Tận tâm, Sáng tạo, Hợp tác, Chính trực. 'Cạnh tranh' không phải giá trị cốt lõi.",
+        "options": [
+          { "id": "q1_3_a", "text": "Tận tâm (Dedication)", "isCorrect": false },
+          { "id": "q1_3_b", "text": "Cạnh tranh (Competition)", "isCorrect": true },
+          { "id": "q1_3_c", "text": "Hợp tác (Collaboration)", "isCorrect": false },
+          { "id": "q1_3_d", "text": "Chính trực (Integrity)", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_4",
+        "questionText": "Rating trung bình của DECOCO trên các sàn TMĐT là bao nhiêu?",
+        "questionType": "single_choice",
+        "explanation": "Rating trung bình của DECOCO là 4.8/5 trên các sàn TMĐT.",
+        "options": [
+          { "id": "q1_4_a", "text": "4.5/5", "isCorrect": false },
+          { "id": "q1_4_b", "text": "4.6/5", "isCorrect": false },
+          { "id": "q1_4_c", "text": "4.8/5", "isCorrect": true },
+          { "id": "q1_4_d", "text": "5.0/5", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_5",
+        "questionText": "Tầm nhìn của DECOCO là trở thành thương hiệu hàng đầu trong lĩnh vực nào?",
+        "questionType": "single_choice",
+        "explanation": "Tầm nhìn DECOCO: Trở thành thương hiệu lifestyle hàng đầu Việt Nam.",
+        "options": [
+          { "id": "q1_5_a", "text": "Công nghệ", "isCorrect": false },
+          { "id": "q1_5_b", "text": "Lifestyle", "isCorrect": true },
+          { "id": "q1_5_c", "text": "Thực phẩm", "isCorrect": false },
+          { "id": "q1_5_d", "text": "Giáo dục", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_6",
+        "questionText": "DECOCO nằm trong Top mấy shop bán chạy nhất ngành Home & Living trên Shopee?",
+        "questionType": "single_choice",
+        "explanation": "DECOCO đạt Top 10 shop bán chạy nhất ngành Home & Living trên Shopee (2025).",
+        "options": [
+          { "id": "q1_6_a", "text": "Top 3", "isCorrect": false },
+          { "id": "q1_6_b", "text": "Top 5", "isCorrect": false },
+          { "id": "q1_6_c", "text": "Top 10", "isCorrect": true },
+          { "id": "q1_6_d", "text": "Top 20", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_7",
+        "questionText": "Tỷ lệ khách hàng quay lại của DECOCO là bao nhiêu?",
+        "questionType": "single_choice",
+        "explanation": "Tỷ lệ khách hàng quay lại: 45%.",
+        "options": [
+          { "id": "q1_7_a", "text": "25%", "isCorrect": false },
+          { "id": "q1_7_b", "text": "35%", "isCorrect": false },
+          { "id": "q1_7_c", "text": "45%", "isCorrect": true },
+          { "id": "q1_7_d", "text": "55%", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_8",
+        "questionText": "\"Sáng tạo\" (Creativity) là một trong các giá trị cốt lõi của DECOCO.",
+        "questionType": "true_false",
+        "explanation": "Đúng. Sáng tạo (Creativity) là 1 trong 4 giá trị cốt lõi: Tận tâm, Sáng tạo, Hợp tác, Chính trực.",
+        "options": [
+          { "id": "q1_8_a", "text": "Đúng", "isCorrect": true },
+          { "id": "q1_8_b", "text": "Sai", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q1_9",
+        "questionText": "DECOCO có hơn 1 triệu đơn hàng thành công mỗi năm.",
+        "questionType": "true_false",
+        "explanation": "Sai. DECOCO có hơn 500.000 đơn hàng thành công mỗi năm, không phải 1 triệu.",
+        "options": [
+          { "id": "q1_9_a", "text": "Đúng", "isCorrect": false },
+          { "id": "q1_9_b", "text": "Sai", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "q1_10",
+        "questionText": "Đâu là sản phẩm thuộc mảng Trang trí nội thất của DECOCO?",
+        "questionType": "single_choice",
+        "explanation": "Nến thơm thuộc mảng Trang trí nội thất. Son môi thuộc mỹ phẩm, điện thoại và xe đạp không phải sản phẩm DECOCO.",
+        "options": [
+          { "id": "q1_10_a", "text": "Son môi", "isCorrect": false },
+          { "id": "q1_10_b", "text": "Nến thơm", "isCorrect": true },
+          { "id": "q1_10_c", "text": "Điện thoại", "isCorrect": false },
+          { "id": "q1_10_d", "text": "Xe đạp", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz2",
+    "documentId": "doc2",
+    "title": "Quiz: Văn hoá công ty DECOCO",
+    "passingScore": 7.0,
+    "timeLimitMinutes": null,
+    "isActive": true,
+    "questions": [
+      {
+        "id": "q2_1",
+        "questionText": "DECOCO sử dụng công cụ giao tiếp nội bộ chính nào?",
+        "questionType": "single_choice",
+        "explanation": "DECOCO sử dụng Lark làm công cụ giao tiếp nội bộ chính.",
+        "options": [
+          { "id": "q2_1_a", "text": "Slack", "isCorrect": false },
+          { "id": "q2_1_b", "text": "Microsoft Teams", "isCorrect": false },
+          { "id": "q2_1_c", "text": "Lark", "isCorrect": true },
+          { "id": "q2_1_d", "text": "Zalo", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q2_2",
+        "questionText": "Mỗi team họp weekly bao lâu?",
+        "questionType": "single_choice",
+        "explanation": "Mỗi team họp 1 lần/tuần trong 30 phút để review KPI.",
+        "options": [
+          { "id": "q2_2_a", "text": "15 phút", "isCorrect": false },
+          { "id": "q2_2_b", "text": "30 phút", "isCorrect": true },
+          { "id": "q2_2_c", "text": "1 tiếng", "isCorrect": false },
+          { "id": "q2_2_d", "text": "2 tiếng", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q2_3",
+        "questionText": "Happy Friday diễn ra vào thời điểm nào?",
+        "questionType": "single_choice",
+        "explanation": "Happy Friday: Mỗi thứ 6 cuối tháng off sớm 1 tiếng.",
+        "options": [
+          { "id": "q2_3_a", "text": "Mỗi thứ 6 hàng tuần", "isCorrect": false },
+          { "id": "q2_3_b", "text": "Mỗi thứ 6 cuối tháng", "isCorrect": true },
+          { "id": "q2_3_c", "text": "Mỗi thứ 6 đầu tháng", "isCorrect": false },
+          { "id": "q2_3_d", "text": "Mỗi thứ 7", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q2_4",
+        "questionText": "DECOCO có bao nhiêu lần company trip trong năm?",
+        "questionType": "single_choice",
+        "explanation": "Company trip 2 lần/năm.",
+        "options": [
+          { "id": "q2_4_a", "text": "1 lần", "isCorrect": false },
+          { "id": "q2_4_b", "text": "2 lần", "isCorrect": true },
+          { "id": "q2_4_c", "text": "3 lần", "isCorrect": false },
+          { "id": "q2_4_d", "text": "4 lần", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q2_5",
+        "questionText": "DECOCO đánh giá nhân viên dựa trên thời gian ngồi tại chỗ.",
+        "questionType": "true_false",
+        "explanation": "Sai. DECOCO theo phong cách Result-oriented: Đánh giá dựa trên kết quả, không phải thời gian ngồi tại chỗ.",
+        "options": [
+          { "id": "q2_5_a", "text": "Đúng", "isCorrect": false },
+          { "id": "q2_5_b", "text": "Sai", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "q2_6",
+        "questionText": "Nhân viên DECOCO có thể mặc quần short đi làm.",
+        "questionType": "true_false",
+        "explanation": "Sai. Dress code là Smart casual - không mặc quần short, dép lê khi đi làm.",
+        "options": [
+          { "id": "q2_6_a", "text": "Đúng", "isCorrect": false },
+          { "id": "q2_6_b", "text": "Sai", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "q2_7",
+        "questionText": "Feedback 1-1 giữa Leader và member diễn ra bao lâu một lần?",
+        "questionType": "single_choice",
+        "explanation": "Feedback 1-1: Leader và member gặp 1-1 mỗi 2 tuần.",
+        "options": [
+          { "id": "q2_7_a", "text": "Mỗi tuần", "isCorrect": false },
+          { "id": "q2_7_b", "text": "Mỗi 2 tuần", "isCorrect": true },
+          { "id": "q2_7_c", "text": "Mỗi tháng", "isCorrect": false },
+          { "id": "q2_7_d", "text": "Mỗi quý", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q2_8",
+        "questionText": "Phong cách làm việc của DECOCO có thể mô tả bằng cụm từ nào?",
+        "questionType": "single_choice",
+        "explanation": "Văn hoá DECOCO: \"Work Hard, Play Hard\".",
+        "options": [
+          { "id": "q2_8_a", "text": "Slow and Steady", "isCorrect": false },
+          { "id": "q2_8_b", "text": "Work Hard, Play Hard", "isCorrect": true },
+          { "id": "q2_8_c", "text": "Move Fast, Break Things", "isCorrect": false },
+          { "id": "q2_8_d", "text": "Think Different", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz3",
+    "documentId": "doc3",
+    "title": "Quiz: Nội quy chung",
+    "passingScore": 7.0,
+    "timeLimitMinutes": null,
+    "isActive": true,
+    "questions": [
+      {
+        "id": "q3_1",
+        "questionText": "Giờ làm việc full-time tại DECOCO là gì?",
+        "questionType": "single_choice",
+        "explanation": "Full-time: Thứ 2 – Thứ 6, 8:30 – 17:30.",
+        "options": [
+          { "id": "q3_1_a", "text": "8:00 – 17:00", "isCorrect": false },
+          { "id": "q3_1_b", "text": "8:30 – 17:30", "isCorrect": true },
+          { "id": "q3_1_c", "text": "9:00 – 18:00", "isCorrect": false },
+          { "id": "q3_1_d", "text": "9:00 – 17:00", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q3_2",
+        "questionText": "Nhân viên full-time được bao nhiêu ngày phép/năm?",
+        "questionType": "single_choice",
+        "explanation": "Phép năm: 12 ngày/năm cho nhân viên full-time đã qua thử việc.",
+        "options": [
+          { "id": "q3_2_a", "text": "10 ngày", "isCorrect": false },
+          { "id": "q3_2_b", "text": "12 ngày", "isCorrect": true },
+          { "id": "q3_2_c", "text": "14 ngày", "isCorrect": false },
+          { "id": "q3_2_d", "text": "15 ngày", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q3_3",
+        "questionText": "Đi trễ trên 15 phút sẽ bị xử lý như thế nào?",
+        "questionType": "single_choice",
+        "explanation": "Đi trễ trên 15 phút sẽ bị trừ buổi công.",
+        "options": [
+          { "id": "q3_3_a", "text": "Nhắc nhở", "isCorrect": false },
+          { "id": "q3_3_b", "text": "Trừ buổi công", "isCorrect": true },
+          { "id": "q3_3_c", "text": "Cảnh cáo ngay", "isCorrect": false },
+          { "id": "q3_3_d", "text": "Không xử lý", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q3_4",
+        "questionText": "Rò rỉ thông tin nội bộ sẽ bị xử lý như thế nào?",
+        "questionType": "single_choice",
+        "explanation": "Rò rỉ thông tin nội bộ: Sa thải ngay lập tức.",
+        "options": [
+          { "id": "q3_4_a", "text": "Cảnh cáo", "isCorrect": false },
+          { "id": "q3_4_b", "text": "Trừ lương", "isCorrect": false },
+          { "id": "q3_4_c", "text": "Sa thải ngay lập tức", "isCorrect": true },
+          { "id": "q3_4_d", "text": "Chuyển phòng ban", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q3_5",
+        "questionText": "DECOCO chấm công bằng công cụ nào?",
+        "questionType": "single_choice",
+        "explanation": "Check-in: Chấm công qua app Lark (vị trí GPS).",
+        "options": [
+          { "id": "q3_5_a", "text": "Vân tay", "isCorrect": false },
+          { "id": "q3_5_b", "text": "App Lark (GPS)", "isCorrect": true },
+          { "id": "q3_5_c", "text": "Thẻ từ", "isCorrect": false },
+          { "id": "q3_5_d", "text": "Tự khai báo", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q3_6",
+        "questionText": "Mật khẩu tài khoản công ty phải có tối thiểu bao nhiêu ký tự?",
+        "questionType": "single_choice",
+        "explanation": "Mật khẩu tài khoản công ty phải đặt tối thiểu 8 ký tự, có chữ hoa + số.",
+        "options": [
+          { "id": "q3_6_a", "text": "6 ký tự", "isCorrect": false },
+          { "id": "q3_6_b", "text": "8 ký tự", "isCorrect": true },
+          { "id": "q3_6_c", "text": "10 ký tự", "isCorrect": false },
+          { "id": "q3_6_d", "text": "12 ký tự", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q3_7",
+        "questionText": "Nhân viên được phép screenshot dữ liệu công ty gửi cho bạn bè.",
+        "questionType": "true_false",
+        "explanation": "Sai. Nghiêm cấm screenshot, chụp màn hình dữ liệu công ty gửi cho bên thứ 3.",
+        "options": [
+          { "id": "q3_7_a", "text": "Đúng", "isCorrect": false },
+          { "id": "q3_7_b", "text": "Sai", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "q3_8",
+        "questionText": "Tối đa được nghỉ không lương bao nhiêu ngày/năm?",
+        "questionType": "single_choice",
+        "explanation": "Nghỉ không lương: Tối đa 5 ngày/năm.",
+        "options": [
+          { "id": "q3_8_a", "text": "3 ngày", "isCorrect": false },
+          { "id": "q3_8_b", "text": "5 ngày", "isCorrect": true },
+          { "id": "q3_8_c", "text": "7 ngày", "isCorrect": false },
+          { "id": "q3_8_d", "text": "10 ngày", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz4",
+    "documentId": "doc4",
+    "title": "Quiz: Sơ đồ tổ chức phòng ban",
+    "passingScore": 7.0,
+    "timeLimitMinutes": null,
+    "isActive": true,
+    "questions": [
+      {
+        "id": "q4_1",
+        "questionText": "DECOCO có bao nhiêu phòng ban chính?",
+        "questionType": "single_choice",
+        "explanation": "DECOCO có 2 phòng ban chính: Phòng Marketing và Phòng Vận hành.",
+        "options": [
+          { "id": "q4_1_a", "text": "2", "isCorrect": true },
+          { "id": "q4_1_b", "text": "3", "isCorrect": false },
+          { "id": "q4_1_c", "text": "4", "isCorrect": false },
+          { "id": "q4_1_d", "text": "5", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q4_2",
+        "questionText": "Content Executive báo cáo cho ai?",
+        "questionType": "single_choice",
+        "explanation": "Content Executive báo cáo cho Leader Content.",
+        "options": [
+          { "id": "q4_2_a", "text": "Marketing Manager", "isCorrect": false },
+          { "id": "q4_2_b", "text": "Leader Content", "isCorrect": true },
+          { "id": "q4_2_c", "text": "Ban Giám đốc", "isCorrect": false },
+          { "id": "q4_2_d", "text": "Admin Vận hành", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q4_3",
+        "questionText": "Phòng Marketing có bao nhiêu team?",
+        "questionType": "single_choice",
+        "explanation": "Phòng Marketing có 4 team: Content, Livestream, CSKH, Booking.",
+        "options": [
+          { "id": "q4_3_a", "text": "2", "isCorrect": false },
+          { "id": "q4_3_b", "text": "3", "isCorrect": false },
+          { "id": "q4_3_c", "text": "4", "isCorrect": true },
+          { "id": "q4_3_d", "text": "5", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q4_4",
+        "questionText": "Nhân viên Kho báo cáo trực tiếp cho Ban Giám đốc.",
+        "questionType": "true_false",
+        "explanation": "Sai. Nhân viên Kho báo cáo cho Admin Vận hành, Admin Vận hành mới báo cáo cho Ban Giám đốc.",
+        "options": [
+          { "id": "q4_4_a", "text": "Đúng", "isCorrect": false },
+          { "id": "q4_4_b", "text": "Sai", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "q4_5",
+        "questionText": "Team nào có số lượng thành viên đông nhất?",
+        "questionType": "single_choice",
+        "explanation": "Team Livestream có Host LIVE × 4 + Trợ LIVE × 6 = 10 người, đông nhất.",
+        "options": [
+          { "id": "q4_5_a", "text": "Team Content", "isCorrect": false },
+          { "id": "q4_5_b", "text": "Team Livestream", "isCorrect": true },
+          { "id": "q4_5_c", "text": "Team CSKH", "isCorrect": false },
+          { "id": "q4_5_d", "text": "Team Booking", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q4_6",
+        "questionText": "Leader Booking kiêm thêm vai trò nào?",
+        "questionType": "single_choice",
+        "explanation": "Leader Booking kiêm Quản lý vận hành sàn TMĐT (Shopee, TikTok Shop).",
+        "options": [
+          { "id": "q4_6_a", "text": "Quản lý kho", "isCorrect": false },
+          { "id": "q4_6_b", "text": "Quản lý vận hành sàn TMĐT", "isCorrect": true },
+          { "id": "q4_6_c", "text": "Marketing Manager", "isCorrect": false },
+          { "id": "q4_6_d", "text": "Admin Vận hành", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz5",
+    "documentId": "doc5",
+    "title": "Quiz: Giới thiệu Phòng Marketing",
+    "passingScore": 7.0,
+    "timeLimitMinutes": null,
+    "isActive": true,
+    "questions": [
+      {
+        "id": "q5_1",
+        "questionText": "Mục tiêu doanh thu online 2026 của Phòng Marketing là bao nhiêu?",
+        "questionType": "single_choice",
+        "explanation": "Mục tiêu doanh thu online đạt 50 tỷ VNĐ/năm.",
+        "options": [
+          { "id": "q5_1_a", "text": "30 tỷ VNĐ", "isCorrect": false },
+          { "id": "q5_1_b", "text": "50 tỷ VNĐ", "isCorrect": true },
+          { "id": "q5_1_c", "text": "80 tỷ VNĐ", "isCorrect": false },
+          { "id": "q5_1_d", "text": "100 tỷ VNĐ", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q5_2",
+        "questionText": "Team Livestream live trung bình mấy tiếng/ngày trên TikTok?",
+        "questionType": "single_choice",
+        "explanation": "Live trên TikTok 4-6 tiếng/ngày, chia ca.",
+        "options": [
+          { "id": "q5_2_a", "text": "2-3 tiếng", "isCorrect": false },
+          { "id": "q5_2_b", "text": "4-6 tiếng", "isCorrect": true },
+          { "id": "q5_2_c", "text": "8 tiếng", "isCorrect": false },
+          { "id": "q5_2_d", "text": "10 tiếng", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q5_3",
+        "questionText": "Tỷ lệ CSKH hài lòng mục tiêu là bao nhiêu?",
+        "questionType": "single_choice",
+        "explanation": "Tỷ lệ CSKH hài lòng mục tiêu ≥ 95%.",
+        "options": [
+          { "id": "q5_3_a", "text": "≥ 85%", "isCorrect": false },
+          { "id": "q5_3_b", "text": "≥ 90%", "isCorrect": false },
+          { "id": "q5_3_c", "text": "≥ 95%", "isCorrect": true },
+          { "id": "q5_3_d", "text": "100%", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q5_4",
+        "questionText": "KPI chính của Team Content bao gồm engagement rate.",
+        "questionType": "true_false",
+        "explanation": "Đúng. KPI Team Content: Số bài/tuần, engagement rate, reach, conversion rate từ content.",
+        "options": [
+          { "id": "q5_4_a", "text": "Đúng", "isCorrect": true },
+          { "id": "q5_4_b", "text": "Sai", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q5_5",
+        "questionText": "Team Booking chạy khuyến mãi trên những sàn nào?",
+        "questionType": "single_choice",
+        "explanation": "Team Booking quản lý listing sản phẩm trên Shopee, TikTok Shop.",
+        "options": [
+          { "id": "q5_5_a", "text": "Shopee và Lazada", "isCorrect": false },
+          { "id": "q5_5_b", "text": "Shopee và TikTok Shop", "isCorrect": true },
+          { "id": "q5_5_c", "text": "Tiki và Sendo", "isCorrect": false },
+          { "id": "q5_5_d", "text": "Amazon và eBay", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz6",
+    "documentId": "doc6",
+    "title": "Quiz: Giới thiệu Phòng Vận hành",
+    "passingScore": 7.0,
+    "timeLimitMinutes": null,
+    "isActive": true,
+    "questions": [
+      {
+        "id": "q6_1",
+        "questionText": "Mục tiêu tỷ lệ giao hàng đúng hẹn 2026 là bao nhiêu?",
+        "questionType": "single_choice",
+        "explanation": "Tỷ lệ giao hàng đúng hẹn mục tiêu ≥ 98%.",
+        "options": [
+          { "id": "q6_1_a", "text": "≥ 90%", "isCorrect": false },
+          { "id": "q6_1_b", "text": "≥ 95%", "isCorrect": false },
+          { "id": "q6_1_c", "text": "≥ 98%", "isCorrect": true },
+          { "id": "q6_1_d", "text": "100%", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q6_2",
+        "questionText": "Đơn hàng được bàn giao cho đơn vị vận chuyển mấy lần/ngày?",
+        "questionType": "single_choice",
+        "explanation": "Bàn giao cho đối tác vận chuyển mỗi ngày 2 lần: 10:00 và 15:00.",
+        "options": [
+          { "id": "q6_2_a", "text": "1 lần", "isCorrect": false },
+          { "id": "q6_2_b", "text": "2 lần", "isCorrect": true },
+          { "id": "q6_2_c", "text": "3 lần", "isCorrect": false },
+          { "id": "q6_2_d", "text": "4 lần", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q6_3",
+        "questionText": "Phải đeo găng tay khi xử lý sản phẩm nào?",
+        "questionType": "single_choice",
+        "explanation": "Luôn đeo găng tay khi xử lý sản phẩm mỹ phẩm.",
+        "options": [
+          { "id": "q6_3_a", "text": "Đồ decor", "isCorrect": false },
+          { "id": "q6_3_b", "text": "Mỹ phẩm", "isCorrect": true },
+          { "id": "q6_3_c", "text": "Nến thơm", "isCorrect": false },
+          { "id": "q6_3_d", "text": "Tất cả sản phẩm", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q6_4",
+        "questionText": "Kho hàng DECOCO áp dụng phương pháp quản lý nào?",
+        "questionType": "single_choice",
+        "explanation": "Kho hàng phải sạch sẽ, gọn gàng, đúng quy cách (5S).",
+        "options": [
+          { "id": "q6_4_a", "text": "6 Sigma", "isCorrect": false },
+          { "id": "q6_4_b", "text": "5S", "isCorrect": true },
+          { "id": "q6_4_c", "text": "Kaizen", "isCorrect": false },
+          { "id": "q6_4_d", "text": "Lean", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q6_5",
+        "questionText": "Kiểm kê tồn kho được thực hiện bao lâu một lần?",
+        "questionType": "single_choice",
+        "explanation": "Kiểm kê tồn kho hàng tuần.",
+        "options": [
+          { "id": "q6_5_a", "text": "Hàng ngày", "isCorrect": false },
+          { "id": "q6_5_b", "text": "Hàng tuần", "isCorrect": true },
+          { "id": "q6_5_c", "text": "Hàng tháng", "isCorrect": false },
+          { "id": "q6_5_d", "text": "Hàng quý", "isCorrect": false }
+        ]
+      },
+      {
+        "id": "q6_6",
+        "questionText": "Sản phẩm bể hỏng phải báo ngay cho ai?",
+        "questionType": "single_choice",
+        "explanation": "Sản phẩm bể, hỏng phải báo ngay cho Admin Vận hành.",
+        "options": [
+          { "id": "q6_6_a", "text": "Marketing Manager", "isCorrect": false },
+          { "id": "q6_6_b", "text": "Admin Vận hành", "isCorrect": true },
+          { "id": "q6_6_c", "text": "Ban Giám đốc", "isCorrect": false },
+          { "id": "q6_6_d", "text": "Nhà cung cấp", "isCorrect": false }
+        ]
+      }
+    ]
+  }
+]

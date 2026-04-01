@@ -1,0 +1,68 @@
+[
+  {
+    "id": "p1",
+    "userId": "u3",
+    "documentId": "doc1",
+    "status": "quiz_passed",
+    "readPercentage": 100,
+    "markedAsRead": true,
+    "startedAt": "2026-03-25T09:00:00Z",
+    "readAt": "2026-03-25T09:30:00Z",
+    "quizPassedAt": "2026-03-25T10:00:00Z"
+  },
+  {
+    "id": "p2",
+    "userId": "u3",
+    "documentId": "doc2",
+    "status": "read",
+    "readPercentage": 100,
+    "markedAsRead": true,
+    "startedAt": "2026-03-25T10:30:00Z",
+    "readAt": "2026-03-25T11:00:00Z",
+    "quizPassedAt": null
+  },
+  {
+    "id": "p3",
+    "userId": "u3",
+    "documentId": "doc3",
+    "status": "reading",
+    "readPercentage": 45,
+    "markedAsRead": false,
+    "startedAt": "2026-03-26T09:00:00Z",
+    "readAt": null,
+    "quizPassedAt": null
+  },
+  {
+    "id": "p4",
+    "userId": "u4",
+    "documentId": "doc1",
+    "status": "reading",
+    "readPercentage": 60,
+    "markedAsRead": false,
+    "startedAt": "2026-03-28T14:00:00Z",
+    "readAt": null,
+    "quizPassedAt": null
+  },
+  {
+    "id": "p1774961310843",
+    "userId": "u3",
+    "documentId": "doc4",
+    "status": "reading",
+    "readPercentage": 0,
+    "markedAsRead": false,
+    "startedAt": "2026-03-31T12:48:30.843Z",
+    "readAt": null,
+    "quizPassedAt": null
+  },
+  {
+    "id": "p1774966698349",
+    "userId": "u3",
+    "documentId": "doc5",
+    "status": "reading",
+    "readPercentage": 0,
+    "markedAsRead": false,
+    "startedAt": "2026-03-31T14:18:18.349Z",
+    "readAt": null,
+    "quizPassedAt": null
+  }
+]

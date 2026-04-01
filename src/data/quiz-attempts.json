@@ -1,0 +1,28 @@
+[
+  {
+    "id": "att1",
+    "userId": "u3",
+    "quizId": "quiz1",
+    "documentId": "doc1",
+    "score": 8.0,
+    "correctCount": 8,
+    "totalQuestions": 10,
+    "isPassed": true,
+    "timeSpentSeconds": 320,
+    "submittedAt": "2026-03-25T10:00:00Z",
+    "answers": []
+  },
+  {
+    "id": "att2",
+    "userId": "u3",
+    "quizId": "quiz2",
+    "documentId": "doc2",
+    "score": 5.0,
+    "correctCount": 4,
+    "totalQuestions": 8,
+    "isPassed": false,
+    "timeSpentSeconds": 180,
+    "submittedAt": "2026-03-25T11:30:00Z",
+    "answers": []
+  }
+]

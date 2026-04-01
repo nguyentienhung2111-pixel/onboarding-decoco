@@ -1,0 +1,26 @@
+{
+  "departments": [
+    { "id": "dept1", "name": "Phòng Marketing", "sortOrder": 1 },
+    { "id": "dept2", "name": "Phòng Vận hành", "sortOrder": 2 }
+  ],
+  "teams": [
+    { "id": "team1", "name": "Team Content", "departmentId": "dept1", "sortOrder": 1 },
+    { "id": "team2", "name": "Team Livestream", "departmentId": "dept1", "sortOrder": 2 },
+    { "id": "team3", "name": "Team CSKH", "departmentId": "dept1", "sortOrder": 3 },
+    { "id": "team4", "name": "Team Booking", "departmentId": "dept1", "sortOrder": 4 }
+  ],
+  "positions": [
+    { "id": "pos1", "name": "Marketing Manager", "departmentId": "dept1", "teamId": null, "employmentType": "full_time", "sortOrder": 1 },
+    { "id": "pos2", "name": "Leader Content", "departmentId": "dept1", "teamId": "team1", "employmentType": "full_time", "sortOrder": 2 },
+    { "id": "pos3", "name": "Content Executive", "departmentId": "dept1", "teamId": "team1", "employmentType": "part_time", "sortOrder": 3 },
+    { "id": "pos4", "name": "Host LIVE", "departmentId": "dept1", "teamId": "team2", "employmentType": "full_time", "sortOrder": 4 },
+    { "id": "pos5", "name": "Trợ LIVE", "departmentId": "dept1", "teamId": "team2", "employmentType": "part_time", "sortOrder": 5 },
+    { "id": "pos6", "name": "Leader CSKH", "departmentId": "dept1", "teamId": "team3", "employmentType": "full_time", "sortOrder": 6 },
+    { "id": "pos7", "name": "CSKH Executive", "departmentId": "dept1", "teamId": "team3", "employmentType": "part_time", "sortOrder": 7 },
+    { "id": "pos8", "name": "Leader Booking", "departmentId": "dept1", "teamId": "team4", "employmentType": "full_time", "sortOrder": 8 },
+    { "id": "pos9", "name": "Booking Executive", "departmentId": "dept1", "teamId": "team4", "employmentType": "part_time", "sortOrder": 9 },
+    { "id": "pos10", "name": "Admin Vận hành", "departmentId": "dept2", "teamId": null, "employmentType": "full_time", "sortOrder": 10 },
+    { "id": "pos11", "name": "Nhân viên Kho", "departmentId": "dept2", "teamId": null, "employmentType": "full_time", "sortOrder": 11 },
+    { "id": "pos12", "name": "Nhân viên Kho (PT)", "departmentId": "dept2", "teamId": null, "employmentType": "part_time", "sortOrder": 12 }
+  ]
+}

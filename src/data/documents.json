@@ -1,0 +1,80 @@
+[
+  {
+    "id": "doc1",
+    "title": "Giới thiệu về công ty DECOCO",
+    "docType": "general",
+    "status": "published",
+    "sortOrder": 1,
+    "estimatedReadMinutes": 8,
+    "thumbnail": "🏢",
+    "summary": "Lịch sử hình thành, tầm nhìn, sứ mệnh, giá trị cốt lõi và các sản phẩm/dịch vụ chính của DECOCO.",
+    "contentHtml": "<h2>Chào mừng bạn đến với DECOCO!</h2><p>DECOCO là công ty chuyên cung cấp các sản phẩm trang trí nội thất và mỹ phẩm chăm sóc sắc đẹp hàng đầu Việt Nam. Được thành lập từ năm 2018, DECOCO đã xây dựng một đội ngũ trẻ trung, năng động và đầy sáng tạo.</p><h3>🏆 Tầm nhìn</h3><p>Trở thành thương hiệu lifestyle hàng đầu Việt Nam, mang đến cho khách hàng những sản phẩm chất lượng cao với giá cả hợp lý, giúp mỗi gia đình Việt có cuộc sống đẹp hơn.</p><h3>🎯 Sứ mệnh</h3><p>Cung cấp sản phẩm và dịch vụ xuất sắc, tạo ra giá trị thực cho khách hàng thông qua sự sáng tạo, chất lượng và dịch vụ khách hàng tuyệt vời. Chúng tôi cam kết:</p><ul><li><strong>Chất lượng trên hết:</strong> Mọi sản phẩm đều trải qua quy trình kiểm định nghiêm ngặt</li><li><strong>Khách hàng là trung tâm:</strong> Lắng nghe và đáp ứng nhu cầu của khách hàng</li><li><strong>Đổi mới liên tục:</strong> Luôn tìm kiếm cách làm tốt hơn</li></ul><h3>💎 Giá trị cốt lõi</h3><p>DECOCO xây dựng văn hoá doanh nghiệp dựa trên 4 giá trị cốt lõi:</p><ol><li><strong>Tận tâm (Dedication):</strong> Làm việc hết mình, luôn nỗ lực vượt qua kỳ vọng</li><li><strong>Sáng tạo (Creativity):</strong> Không ngừng đổi mới, tìm kiếm giải pháp sáng tạo</li><li><strong>Hợp tác (Collaboration):</strong> Làm việc nhóm, hỗ trợ lẫn nhau để đạt mục tiêu chung</li><li><strong>Chính trực (Integrity):</strong> Trung thực, minh bạch trong mọi hoạt động</li></ol><h3>📦 Sản phẩm & Dịch vụ</h3><p>DECOCO hoạt động chính trong 2 mảng:</p><ul><li><strong>Trang trí nội thất:</strong> Đồ decor nhà cửa, phụ kiện trang trí, đèn trang trí, nến thơm, diffuser...</li><li><strong>Mỹ phẩm & Chăm sóc cá nhân:</strong> Skincare, body care, sản phẩm làm đẹp từ thiên nhiên</li></ul><h3>📈 Thành tựu nổi bật</h3><ul><li>Top 10 shop bán chạy nhất ngành Home & Living trên Shopee (2025)</li><li>Hơn 500.000 đơn hàng thành công mỗi năm</li><li>Tỷ lệ khách hàng quay lại: 45%</li><li>Rating trung bình: 4.8/5 trên các sàn TMĐT</li></ul>",
+    "assignedTo": { "isGeneral": true },
+    "createdAt": "2026-01-15T00:00:00Z"
+  },
+  {
+    "id": "doc2",
+    "title": "Văn hoá công ty DECOCO",
+    "docType": "general",
+    "status": "published",
+    "sortOrder": 2,
+    "estimatedReadMinutes": 6,
+    "thumbnail": "🌟",
+    "summary": "Phong cách làm việc, cách giao tiếp, tinh thần đội nhóm và các giá trị văn hoá đặc trưng.",
+    "contentHtml": "<h2>Văn hoá DECOCO — \"Work Hard, Play Hard\"</h2><p>DECOCO tự hào có môi trường làm việc trẻ trung, cởi mở và đầy năng lượng. Chúng tôi tin rằng một môi trường làm việc tốt sẽ tạo ra những sản phẩm tốt.</p><h3>🤝 Phong cách làm việc</h3><ul><li><strong>Flat culture:</strong> Mọi người được khuyến khích đóng góp ý kiến bất kể vị trí. Không có rào cản cấp bậc trong việc đề xuất ý tưởng.</li><li><strong>Result-oriented:</strong> Đánh giá dựa trên kết quả, không phải thời gian ngồi tại chỗ.</li><li><strong>Fast-paced:</strong> Tốc độ thực thi nhanh, fail fast - learn fast.</li><li><strong>Data-driven:</strong> Quyết định dựa trên dữ liệu, không cảm tính.</li></ul><h3>💬 Giao tiếp nội bộ</h3><ul><li><strong>Lark (chính):</strong> Trao đổi công việc hàng ngày, group chat theo team</li><li><strong>Họp weekly:</strong> Mỗi team họp 1 lần/tuần (30 phút) để review KPI</li><li><strong>All-hands monthly:</strong> Toàn công ty họp 1 lần/tháng, update tình hình kinh doanh</li><li><strong>Feedback 1-1:</strong> Leader và member gặp 1-1 mỗi 2 tuần</li></ul><h3>🎉 Hoạt động team building</h3><ul><li>Team lunch mỗi tháng (công ty tài trợ)</li><li>Company trip 2 lần/năm</li><li>Birthday party hàng tháng cho các thành viên sinh nhật</li><li>Happy Friday: Mỗi thứ 6 cuối tháng off sớm 1 tiếng</li></ul><h3>📐 Dress code</h3><p>Smart casual. Thoải mái nhưng lịch sự. Không mặc quần short, dép lê khi đi làm. Áo DECOCO được phát miễn phí cho mỗi nhân viên.</p>",
+    "assignedTo": { "isGeneral": true },
+    "createdAt": "2026-01-15T00:00:00Z"
+  },
+  {
+    "id": "doc3",
+    "title": "Nội quy chung",
+    "docType": "general",
+    "status": "published",
+    "sortOrder": 3,
+    "estimatedReadMinutes": 10,
+    "thumbnail": "📋",
+    "summary": "Quy định giờ giấc, nghỉ phép, kỷ luật, bảo mật thông tin và sử dụng tài sản công ty.",
+    "contentHtml": "<h2>Nội quy chung — DECOCO</h2><p>Đây là các quy định bắt buộc mà mọi nhân viên DECOCO cần nắm rõ và tuân thủ.</p><h3>⏰ Giờ làm việc</h3><ul><li><strong>Full-time:</strong> Thứ 2 – Thứ 6, 8:30 – 17:30 (nghỉ trưa 12:00 – 13:00)</li><li><strong>Part-time:</strong> Theo lịch đăng ký với Leader, tối thiểu 4 tiếng/ca</li><li><strong>Đi trễ:</strong> Trước 15 phút – nhắc nhở. Trên 15 phút – trừ buổi công. 3 lần/tháng – cảnh cáo</li><li><strong>Check-in:</strong> Chấm công qua app Lark (vị trí GPS)</li></ul><h3>🏖️ Nghỉ phép</h3><ul><li><strong>Phép năm:</strong> 12 ngày/năm (cho nhân viên full-time đã qua thử việc)</li><li><strong>Nghỉ ốm:</strong> Theo quy định BHXH, có giấy xác nhận bác sĩ</li><li><strong>Nghỉ không lương:</strong> Tối đa 5 ngày/năm, phải được Leader và HR duyệt trước 3 ngày</li><li><strong>Quy trình xin phép:</strong> Đăng ký trên Lark → Leader duyệt → HR xác nhận</li></ul><h3>🔒 Bảo mật thông tin</h3><ul><li>Nghiêm cấm chia sẻ thông tin nội bộ (doanh số, chiến lược, danh sách khách hàng) ra bên ngoài</li><li>Không screenshot, chụp màn hình dữ liệu công ty gửi cho bên thứ 3</li><li>Mật khẩu tài khoản công ty phải đặt tối thiểu 8 ký tự, có chữ hoa + số</li><li>Khi nghỉ việc, phải bàn giao toàn bộ tài khoản và dữ liệu</li></ul><h3>💻 Sử dụng tài sản</h3><ul><li>Laptop/máy tính công ty: Chỉ sử dụng cho mục đích công việc</li><li>Thiết bị livestream: Bảo quản cẩn thận, báo hỏng ngay cho Admin</li><li>Đồ dùng văn phòng: Sử dụng tiết kiệm, đặt trả về đúng vị trí</li></ul><h3>⚠️ Kỷ luật</h3><table><tr><th>Vi phạm</th><th>Hình thức xử lý</th></tr><tr><td>Đi trễ 3 lần/tháng</td><td>Cảnh cáo bằng văn bản</td></tr><tr><td>Vắng không phép</td><td>Trừ 1 ngày lương + cảnh cáo</td></tr><tr><td>Rò rỉ thông tin</td><td>Sa thải ngay lập tức</td></tr><tr><td>Gian lận dữ liệu</td><td>Sa thải + xử lý theo pháp luật</td></tr></table>",
+    "assignedTo": { "isGeneral": true },
+    "createdAt": "2026-01-15T00:00:00Z"
+  },
+  {
+    "id": "doc4",
+    "title": "Sơ đồ tổ chức phòng ban",
+    "docType": "general",
+    "status": "published",
+    "sortOrder": 4,
+    "estimatedReadMinutes": 5,
+    "thumbnail": "🗂️",
+    "summary": "Cơ cấu tổ chức tổng thể, phân cấp báo cáo và chức năng chính của từng phòng ban.",
+    "contentHtml": "<h2>Cơ cấu tổ chức DECOCO</h2><p>DECOCO hiện có 2 phòng ban chính với tổng cộng khoảng 25-30 thành viên.</p><h3>📊 Sơ đồ tổng quan</h3><!-- ORG_CHART_HERE --><h3>📢 Phòng Marketing</h3><p>Phòng Marketing chịu trách nhiệm toàn bộ hoạt động marketing, bán hàng online và chăm sóc khách hàng. Bao gồm 4 team:</p><ul><li><strong>Team Content:</strong> Sản xuất nội dung cho các kênh social media, website, sàn TMĐT</li><li><strong>Team Livestream:</strong> Tổ chức các phiên live bán hàng trên TikTok, Shopee Live</li><li><strong>Team CSKH:</strong> Chăm sóc khách hàng, xử lý đơn hàng, giải quyết khiếu nại</li><li><strong>Team Booking:</strong> Quản lý đơn hàng trên các sàn TMĐT, đặt hàng từ nhà cung cấp</li></ul><h3>📦 Phòng Vận hành</h3><p>Phòng Vận hành đảm bảo logistics vận hành trơn tru:</p><ul><li>Quản lý kho hàng, kiểm kê tồn kho</li><li>Đóng gói và giao hàng</li><li>Nhập hàng mới từ nhà cung cấp</li><li>Kết nối giữa Vận hành và Marketing để đảm bảo thông tin sản phẩm chính xác</li></ul><h3>📞 Ai báo cáo ai?</h3><table><tr><th>Vị trí</th><th>Báo cáo cho</th></tr><tr><td>Content Executive</td><td>Leader Content</td></tr><tr><td>Leader Content</td><td>Marketing Manager</td></tr><tr><td>Host LIVE / Trợ LIVE</td><td>Marketing Manager</td></tr><tr><td>CSKH Executive</td><td>Leader CSKH</td></tr><tr><td>Leader CSKH</td><td>Marketing Manager</td></tr><tr><td>Booking Executive</td><td>Leader Booking</td></tr><tr><td>Leader Booking</td><td>Marketing Manager</td></tr><tr><td>Nhân viên Kho</td><td>Admin Vận hành</td></tr><tr><td>Admin Vận hành</td><td>Ban Giám đốc</td></tr><tr><td>Marketing Manager</td><td>Ban Giám đốc</td></tr></table>",
+    "assignedTo": { "isGeneral": true },
+    "createdAt": "2026-01-15T00:00:00Z"
+  },
+  {
+    "id": "doc5",
+    "title": "Giới thiệu Phòng Marketing",
+    "docType": "department",
+    "status": "published",
+    "sortOrder": 5,
+    "estimatedReadMinutes": 7,
+    "thumbnail": "📢",
+    "summary": "Chức năng, nhiệm vụ, các team con và KPI chính của Phòng Marketing.",
+    "contentHtml": "<h2>Phòng Marketing — DECOCO</h2><p>Phòng Marketing là phòng ban lớn nhất tại DECOCO với khoảng 20 thành viên, chịu trách nhiệm toàn bộ hoạt động marketing, bán hàng trực tuyến và chăm sóc khách hàng.</p><h3>🎯 Mục tiêu chính 2026</h3><ul><li>Doanh thu online đạt 50 tỷ VNĐ/năm</li><li>Tăng 30% followers trên TikTok và Instagram</li><li>Tỷ lệ CSKH hài lòng ≥ 95%</li><li>Ra mắt 3 dòng sản phẩm mới</li></ul><h3>📝 Team Content</h3><p><strong>Nhiệm vụ:</strong> Sản xuất nội dung cho tất cả các kênh truyền thông</p><ul><li>Viết bài review sản phẩm, storytelling</li><li>Chụp ảnh, quay video sản phẩm</li><li>Đăng bài trên Facebook, Instagram, TikTok, website</li><li>Thiết kế banner, thumbnail cho sàn TMĐT</li></ul><p><strong>KPI:</strong> Số bài/tuần, engagement rate, reach, conversion rate từ content</p><h3>🎥 Team Livestream</h3><p><strong>Nhiệm vụ:</strong> Tổ chức các phiên live bán hàng chuyên nghiệp</p><ul><li>Live trên TikTok 4-6 tiếng/ngày, chia ca</li><li>Live trên Shopee Live mỗi tuần 3 phiên</li><li>Setup sân khấu, ánh sáng, sản phẩm trước mỗi phiên live</li><li>Tương tác với khách hàng, giới thiệu sản phẩm, chốt đơn</li></ul><p><strong>KPI:</strong> GMV (doanh thu trên live), số đơn/phiên, viewer trung bình, tỷ lệ chuyển đổi</p><h3>📞 Team CSKH</h3><p><strong>Nhiệm vụ:</strong> Đảm bảo trải nghiệm khách hàng tốt nhất</p><ul><li>Trả lời tin nhắn, bình luận trên các kênh social</li><li>Xử lý đổi/trả hàng theo quy trình</li><li>Theo dõi đơn hàng, cập nhật trạng thái cho khách</li><li>Thu thập feedback và báo cáo cho Marketing Manager</li></ul><p><strong>KPI:</strong> Thời gian phản hồi trung bình, tỷ lệ hài lòng, tỷ lệ xử lý xong/ngày</p><h3>🛒 Team Booking</h3><p><strong>Nhiệm vụ:</strong> Quản lý đơn hàng và vận hành sàn TMĐT</p><ul><li>Quản lý listing sản phẩm trên Shopee, TikTok Shop</li><li>Chạy flash sale, voucher, khuyến mãi</li><li>Đặt hàng từ nhà cung cấp</li><li>Phối hợp với Phòng Vận hành để đảm bảo giao hàng đúng hẹn</li></ul><p><strong>KPI:</strong> Doanh thu theo sàn, tỷ lệ đơn thành công, rating shop</p>",
+    "assignedTo": { "departmentId": "dept1" },
+    "createdAt": "2026-01-20T00:00:00Z"
+  },
+  {
+    "id": "doc6",
+    "title": "Giới thiệu Phòng Vận hành",
+    "docType": "department",
+    "status": "published",
+    "sortOrder": 6,
+    "estimatedReadMinutes": 6,
+    "thumbnail": "📦",
+    "summary": "Chức năng, nhiệm vụ, quy trình vận hành và KPI chính của Phòng Vận hành.",
+    "contentHtml": "<h2>Phòng Vận hành — DECOCO</h2><p>Phòng Vận hành là \"xương sống\" của DECOCO, đảm bảo mọi sản phẩm từ kho hàng đến tay khách hàng một cách nhanh chóng và chính xác.</p><h3>🎯 Mục tiêu chính 2026</h3><ul><li>Tỷ lệ giao hàng đúng hẹn ≥ 98%</li><li>Tỷ lệ sai sót đóng gói < 0.5%</li><li>Tối ưu chi phí vận hành giảm 15%</li><li>Áp dụng hệ thống quản lý kho mới</li></ul><h3>📋 Quy trình vận hành chính</h3><h4>1. Nhận đơn hàng</h4><p>Đơn hàng từ các sàn TMĐT được tự động sync về hệ thống quản lý. Team Booking xác nhận → Phòng Vận hành nhận danh sách đơn cần xử lý.</p><h4>2. Pick & Pack</h4><ul><li>In phiếu đóng gói (packing slip)</li><li>Lấy sản phẩm từ kho theo đúng danh sách</li><li>Kiểm tra chất lượng sản phẩm trước khi đóng gói</li><li>Đóng gói cẩn thận (bubble wrap cho đồ dễ vỡ)</li><li>Dán nhãn vận chuyển</li></ul><h4>3. Giao cho đơn vị vận chuyển</h4><p>Đơn hàng được bàn giao cho đối tác vận chuyển (GHN, GHTK, J&T) mỗi ngày 2 lần: 10:00 và 15:00.</p><h4>4. Quản lý kho</h4><ul><li>Kiểm kê tồn kho hàng tuần</li><li>Nhập hàng mới: kiểm tra số lượng, chất lượng → nhập kho → cập nhật hệ thống</li><li>Cảnh báo khi hàng sắp hết (minimum stock level)</li><li>Báo cáo tồn kho hàng tháng cho Ban Giám đốc</li></ul><h3>💼 Vị trí và Trách nhiệm</h3><table><tr><th>Vị trí</th><th>Trách nhiệm chính</th></tr><tr><td>Admin Vận hành</td><td>Quản lý tổng thể, nhập hàng, phối hợp với Marketing, báo cáo BGĐ</td></tr><tr><td>Nhân viên Kho (FT)</td><td>Pick & pack, kiểm kê, nhận hàng nhập, bảo quản kho</td></tr><tr><td>Nhân viên Kho (PT)</td><td>Hỗ trợ đóng gói vào giờ cao điểm (sale, flash sale)</td></tr></table><h3>⚡ Lưu ý quan trọng</h3><ul><li>Luôn đeo găng tay khi xử lý sản phẩm mỹ phẩm</li><li>Kiểm tra hạn sử dụng trước khi đóng gói</li><li>Sản phẩm bể, hỏng phải báo ngay cho Admin Vận hành</li><li>Kho hàng phải sạch sẽ, gọn gàng, đúng quy cách (5S)</li></ul>",
+    "assignedTo": { "departmentId": "dept2" },
+    "createdAt": "2026-01-20T00:00:00Z"
+  }
+]
