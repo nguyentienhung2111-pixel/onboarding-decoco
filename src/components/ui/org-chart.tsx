@@ -127,7 +127,7 @@ const initialNodes = [
   { id: 'mkt-mgr', type: 'org', data: { label: 'Marketing Manager', role: 'manager', count: '1' }, position: { x: 400, y: 240 } },
   
   // MKT Branches (Order: Vận hành sàn, Content, Booking, Livestream, CSKH)
-  { id: 'ops-mkt', type: 'org', data: { label: 'Vận hành sàn', role: 'executive', employment: 'FT', count: '1' }, position: { x: -250, y: 360 } },
+  { id: 'ops-mkt', type: 'org', data: { label: 'Vận hành sàn', role: 'manager', employment: 'FT', count: '1' }, position: { x: -250, y: 360 } },
 
   { id: 'content', type: 'org', data: { label: 'Team Content' }, position: { x: 50, y: 360 } },
   { id: 'content-ldr', type: 'org', data: { label: 'Leader Content', role: 'manager', employment: 'FT', count: '1' }, position: { x: 50, y: 460 } },
