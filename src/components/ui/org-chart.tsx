@@ -117,36 +117,39 @@ function OrgNode({ data }: NodeProps) {
 
 const initialNodes = [
   // CEO
-  { id: 'ceo', type: 'org', data: { label: 'Ban Giám đốc (CEO)', role: 'ceo' }, position: { x: 700, y: 0 } },
+  { id: 'ceo', type: 'org', data: { label: 'Ban Giám đốc (CEO)', role: 'ceo' }, position: { x: 800, y: 0 } },
   
   // L1
   { id: 'mkt', type: 'org', data: { label: 'Phòng Marketing' }, position: { x: 400, y: 120 } },
-  { id: 'ops', type: 'org', data: { label: 'Phòng Vận hành' }, position: { x: 1000, y: 120 } },
+  { id: 'ops', type: 'org', data: { label: 'Phòng Vận hành' }, position: { x: 1400, y: 120 } },
 
   // MKT sub
   { id: 'mkt-mgr', type: 'org', data: { label: 'Marketing Manager', role: 'manager', count: '1' }, position: { x: 400, y: 240 } },
   
+  // MKT Branches (Order: Vận hành sàn, Content, Booking, Livestream, CSKH)
+  { id: 'ops-mkt', type: 'org', data: { label: 'Vận hành sàn', role: 'executive', employment: 'FT' }, position: { x: -250, y: 360 } },
+
   { id: 'content', type: 'org', data: { label: 'Team Content' }, position: { x: 50, y: 360 } },
   { id: 'content-ldr', type: 'org', data: { label: 'Leader Content', role: 'manager', employment: 'FT' }, position: { x: 50, y: 460 } },
   { id: 'content-exe', type: 'org', data: { label: 'Nhân viên Content', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 50, y: 560 } },
 
-  { id: 'live', type: 'org', data: { label: 'Team Livestream' }, position: { x: 350, y: 360 } },
-  { id: 'live-host', type: 'org', data: { label: 'Host LIVE', role: 'executive', employment: 'PT' }, position: { x: 250, y: 460 } },
-  { id: 'live-sup', type: 'org', data: { label: 'Trợ LIVE', role: 'executive', employment: 'PT' }, position: { x: 450, y: 460 } },
+  { id: 'booking', type: 'org', data: { label: 'Team Booking' }, position: { x: 350, y: 360 } },
+  { id: 'booking-ldr', type: 'org', data: { label: 'Leader Booking', role: 'manager', employment: 'FT' }, position: { x: 350, y: 460 } },
+  { id: 'booking-exe', type: 'org', data: { label: 'Nhân viên Booking', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 350, y: 560 } },
 
-  { id: 'cskh', type: 'org', data: { label: 'Team CSKH' }, position: { x: 650, y: 360 } },
-  { id: 'cskh-ldr', type: 'org', data: { label: 'Leader CSKH', role: 'manager', employment: 'FT' }, position: { x: 650, y: 460 } },
-  { id: 'cskh-exe', type: 'org', data: { label: 'Nhân viên CSKH', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 650, y: 560 } },
+  { id: 'live', type: 'org', data: { label: 'Team Livestream' }, position: { x: 650, y: 360 } },
+  { id: 'live-host', type: 'org', data: { label: 'Host LIVE', role: 'executive', employment: 'PT' }, position: { x: 550, y: 460 } },
+  { id: 'live-sup', type: 'org', data: { label: 'Trợ LIVE', role: 'executive', employment: 'PT' }, position: { x: 750, y: 460 } },
 
-  { id: 'booking', type: 'org', data: { label: 'Team Booking' }, position: { x: 850, y: 360 } },
-  { id: 'booking-ldr', type: 'org', data: { label: 'Leader Booking', role: 'manager', employment: 'FT' }, position: { x: 850, y: 460 } },
-  { id: 'booking-exe', type: 'org', data: { label: 'Nhân viên Booking', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 850, y: 560 } },
+  { id: 'cskh', type: 'org', data: { label: 'Team CSKH' }, position: { x: 950, y: 360 } },
+  { id: 'cskh-ldr', type: 'org', data: { label: 'Leader CSKH', role: 'manager', employment: 'FT' }, position: { x: 950, y: 460 } },
+  { id: 'cskh-exe', type: 'org', data: { label: 'Nhân viên CSKH', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 950, y: 560 } },
 
   // OPS sub
-  { id: 'admin', type: 'org', data: { label: 'Admin Vận hành', role: 'manager', employment: 'FT' }, position: { x: 1000, y: 240 } },
-  { id: 'wh', type: 'org', data: { label: 'Kho (Warehouse)' }, position: { x: 1300, y: 240 } },
-  { id: 'wh-ft', type: 'org', data: { label: 'Nhân viên Kho', role: 'executive', employment: 'FT', count: 'n' }, position: { x: 1200, y: 360 } },
-  { id: 'wh-pt', type: 'org', data: { label: 'Nhân viên Kho', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 1400, y: 360 } },
+  { id: 'admin', type: 'org', data: { label: 'Admin Vận hành', role: 'manager', employment: 'FT' }, position: { x: 1400, y: 240 } },
+  { id: 'wh', type: 'org', data: { label: 'Kho (Warehouse)' }, position: { x: 1700, y: 240 } },
+  { id: 'wh-ft', type: 'org', data: { label: 'Nhân viên Kho', role: 'executive', employment: 'FT', count: 'n' }, position: { x: 1600, y: 360 } },
+  { id: 'wh-pt', type: 'org', data: { label: 'Nhân viên Kho', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 1800, y: 360 } },
 ];
 
 const edgeProps = {
@@ -160,10 +163,11 @@ const initialEdges: Edge[] = [
   { id: 'e-ceo-ops', source: 'ceo', target: 'ops', ...edgeProps },
   
   { id: 'e-mkt-mgr', source: 'mkt', target: 'mkt-mgr', ...edgeProps },
+  { id: 'e-mgr-ops-mkt', source: 'mkt-mgr', target: 'ops-mkt', ...edgeProps },
   { id: 'e-mgr-content', source: 'mkt-mgr', target: 'content', ...edgeProps },
+  { id: 'e-mgr-booking', source: 'mkt-mgr', target: 'booking', ...edgeProps },
   { id: 'e-mgr-live', source: 'mkt-mgr', target: 'live', ...edgeProps },
   { id: 'e-mgr-cskh', source: 'mkt-mgr', target: 'cskh', ...edgeProps },
-  { id: 'e-mgr-booking', source: 'mkt-mgr', target: 'booking', ...edgeProps },
 
   { id: 'e-cont-ldr', source: 'content', target: 'content-ldr', ...edgeProps },
   { id: 'e-ldr-exe', source: 'content-ldr', target: 'content-exe', ...edgeProps },
