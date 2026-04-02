@@ -105,7 +105,7 @@ export default function DocumentReaderPage() {
 
       {/* Content */}
       <div id="doc-reader-content" className="doc-reader">
-        {doc.id === 'doc4' && doc.contentHtml.includes('<!-- ORG_CHART_HERE -->') ? (
+        {doc.contentHtml.includes('<!-- ORG_CHART_HERE -->') ? (
           <>
             <div dangerouslySetInnerHTML={{ __html: doc.contentHtml.split('<!-- ORG_CHART_HERE -->')[0] }} />
             <div style={{ margin: '32px 0', height: '600px' }}>
