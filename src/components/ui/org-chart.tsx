@@ -32,39 +32,42 @@ function OrgNode({ data }: NodeProps) {
   const isPT = employment === 'PT';
 
   let bg = '#1E293B';
-  let border = '1px solid #334155';
+  let borderColor = '#334155';
+  let borderWidth = '1px';
+  let borderStyle = isPT ? 'dashed' : 'solid';
   let color = '#E2E8F0';
-  let borderStyle = 'solid';
   let fontWeight = 500;
+  let boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
 
   if (isCEO) {
     bg = '#7C3AED';
-    border = '1px solid #6D28D9';
+    borderColor = '#6D28D9';
+    borderWidth = '2px';
     fontWeight = 700;
     color = '#FFFFFF';
+    boxShadow = '0 0 20px rgba(124, 58, 237, 0.5)';
   } else if (isManager) {
-    border = '2px solid #7C3AED';
-  }
-
-  if (isPT) {
-    borderStyle = 'dashed';
+    borderColor = '#7C3AED';
+    borderWidth = '2px';
+    boxShadow = '0 0 15px rgba(124, 58, 237, 0.3)';
   }
 
   return (
     <div
       style={{
         background: bg,
-        border: border,
+        borderWidth: borderWidth,
+        borderColor: borderColor,
         borderStyle: borderStyle,
         borderRadius: '12px',
         padding: '10px 14px',
         color: color,
         fontWeight: fontWeight,
         fontSize: '14px',
-        width: '160px', /* Fix width to guarantee center alignment on smoothstep edges */
+        width: '160px',
         textAlign: 'center',
         position: 'relative',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+        boxShadow: boxShadow,
         transition: 'all 0.2s ease',
         cursor: 'pointer',
         fontFamily: 'var(--font-inter), sans-serif',
@@ -72,12 +75,12 @@ function OrgNode({ data }: NodeProps) {
       className="org-node"
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = '#A78BFA';
-        e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(124, 58, 237, 0.2)';
+        e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(124, 58, 237, 0.3)';
         e.currentTarget.style.transform = 'translateY(-2px)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = isManager ? '#7C3AED' : (isCEO ? '#6D28D9' : '#334155');
-        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        e.currentTarget.style.borderColor = borderColor;
+        e.currentTarget.style.boxShadow = boxShadow;
         e.currentTarget.style.transform = 'translateY(0)';
       }}
     >
