@@ -128,19 +128,19 @@ const initialNodes = [
   
   { id: 'content', type: 'org', data: { label: 'Team Content' }, position: { x: 50, y: 360 } },
   { id: 'content-ldr', type: 'org', data: { label: 'Leader Content', role: 'manager', employment: 'FT' }, position: { x: 50, y: 460 } },
-  { id: 'content-exe', type: 'org', data: { label: 'Content Exec', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 50, y: 560 } },
+  { id: 'content-exe', type: 'org', data: { label: 'Nhân viên Content', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 50, y: 560 } },
 
   { id: 'live', type: 'org', data: { label: 'Team Livestream' }, position: { x: 350, y: 360 } },
-  { id: 'live-host', type: 'org', data: { label: 'Host LIVE', role: 'executive', employment: 'PT', count: '4' }, position: { x: 250, y: 460 } },
-  { id: 'live-sup', type: 'org', data: { label: 'Trợ LIVE', role: 'executive', employment: 'PT', count: '6' }, position: { x: 450, y: 460 } },
+  { id: 'live-host', type: 'org', data: { label: 'Host LIVE', role: 'executive', employment: 'PT' }, position: { x: 250, y: 460 } },
+  { id: 'live-sup', type: 'org', data: { label: 'Trợ LIVE', role: 'executive', employment: 'PT' }, position: { x: 450, y: 460 } },
 
   { id: 'cskh', type: 'org', data: { label: 'Team CSKH' }, position: { x: 650, y: 360 } },
   { id: 'cskh-ldr', type: 'org', data: { label: 'Leader CSKH', role: 'manager', employment: 'FT' }, position: { x: 650, y: 460 } },
-  { id: 'cskh-exe', type: 'org', data: { label: 'CSKH Exec', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 650, y: 560 } },
+  { id: 'cskh-exe', type: 'org', data: { label: 'Nhân viên CSKH', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 650, y: 560 } },
 
   { id: 'booking', type: 'org', data: { label: 'Team Booking' }, position: { x: 850, y: 360 } },
   { id: 'booking-ldr', type: 'org', data: { label: 'Leader Booking', role: 'manager', employment: 'FT' }, position: { x: 850, y: 460 } },
-  { id: 'booking-exe', type: 'org', data: { label: 'Booking Exec', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 850, y: 560 } },
+  { id: 'booking-exe', type: 'org', data: { label: 'Nhân viên Booking', role: 'executive', employment: 'PT', count: 'n' }, position: { x: 850, y: 560 } },
 
   // OPS sub
   { id: 'admin', type: 'org', data: { label: 'Admin Vận hành', role: 'manager', employment: 'FT' }, position: { x: 1000, y: 240 } },
