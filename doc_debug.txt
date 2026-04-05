@@ -1,0 +1,7 @@
+ID: doc-phong-van-hanh | TITLE: Giới thiệu Phòng Vận hành | HAS_ZIRCON: false
+ID: doc-content-san-xuat-video | TITLE: Sản xuất video TikTok (Team Content) | HAS_ZIRCON: true
+ID: doc-gioi-thieu | TITLE: Giới thiệu về công ty DECOCO | HAS_ZIRCON: false
+ID: doc-van-hoa | TITLE: Văn hoá công ty DECOCO | HAS_ZIRCON: false
+ID: doc-so-do-to-chuc | TITLE: Sơ đồ tổ chức & Phân cấp phòng ban | HAS_ZIRCON: false
+ID: doc-noi-quy-chung | TITLE: Nội quy chung | HAS_ZIRCON: false
+ID: doc-phong-marketing | TITLE: Giới thiệu Phòng Marketing | HAS_ZIRCON: false

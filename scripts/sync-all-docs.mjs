@@ -1,11 +1,11 @@
-// scripts/seed-onboarding-docs.mjs
-import { readFileSync, existsSync } from 'fs';
+// scripts/sync-all-docs.mjs
+import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createClient } from '@supabase/supabase-js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT_DIR = join(__dirname, '..', '..'); // e:\Obsidian Data\Onboarding DECOCO App
+const ROOT_DIR = join(__dirname, '..', '..');
 
 // Load credentials from .env.local
 const envPath = join(__dirname, '..', '.env.local');
@@ -43,30 +43,47 @@ function parseMarkdown(filePath) {
   // Extract Quiz JSON
   const jsonMatch = content.match(/```json\n([\s\S]+?)\n```/);
 
+  const docTypeRaw = typeMatch ? typeMatch[1].toLowerCase() : 'general';
+  
   return {
     doc: {
       id: idMatch ? idMatch[1] : null,
-      title: content.split('\n')[0].replace('# ', '').replace(/Tài liệu \d+: /, '').trim(),
-      docType: typeMatch ? typeMatch[1] : 'general',
+      title: content.split('\n')[0].replace('# ', '').replace(/Tài liệu [^:]+: /, '').trim(),
+      docType: docTypeRaw.includes('team') ? 'team' : (docTypeRaw.includes('department') ? 'department' : 'general'),
       estimatedReadMinutes: timeMatch ? parseInt(timeMatch[1], 10) : 5,
       thumbnail: emojiMatch ? emojiMatch[1].trim() : '📄',
       summary: summaryMatch ? summaryMatch[1].trim() : '',
       contentHtml: htmlMatch ? htmlMatch[1].trim() : '',
       status: 'published'
     },
-    quiz: jsonMatch ? JSON.parse(jsonMatch[1]) : null
+    quiz: jsonMatch ? JSON.parse(jsonMatch[1]) : null,
+    filePath
   };
 }
 
 async function uploadDocAndQuiz(data) {
-  const { doc, quiz } = data;
+  const { doc, quiz, filePath } = data;
   if (!doc.id) {
-    console.warn(`⚠️ Skipped: ID not found for document.`);
+    console.warn(`⚠️ Skipped: ID not found for ${filePath}`);
     return;
   }
 
-  console.log(`🚀 Uploading Document: ${doc.title} (${doc.id})...`);
+  console.log(`🚀 Syncing: ${doc.title} (${doc.id})...`);
   
+  // Assignment logic
+  let assignedTeamId = null;
+  let assignedDeptId = null;
+  let isGeneral = false;
+
+  if (doc.docType === 'general') {
+    isGeneral = true;
+  } else if (doc.docType === 'team' || filePath.includes('Team Content')) {
+    assignedTeamId = 'team1'; // Content Team
+    assignedDeptId = 'dept1'; // Marketing
+  } else if (doc.docType === 'department') {
+    assignedDeptId = 'dept1'; // Default to Marketing for now
+  }
+
   const { error: docError } = await supabase.from('documents').upsert({
     id: doc.id,
     title: doc.title,
@@ -76,25 +93,27 @@ async function uploadDocAndQuiz(data) {
     thumbnail: doc.thumbnail,
     summary: doc.summary,
     content_html: doc.contentHtml,
-    is_general: true,
+    is_general: isGeneral,
+    assigned_team_id: assignedTeamId,
+    assigned_department_id: assignedDeptId,
     sort_order: {
       'doc-gioi-thieu': 1,
       'doc-van-hoa': 2,
       'doc-so-do-to-chuc': 3,
       'doc-noi-quy-chung': 4,
-      'doc-phong-marketing': 5
-    }[doc.id] || 99,
-    created_at: new Date().toISOString()
+      'doc-phong-marketing': 5,
+      'doc-phong-van-hanh': 6,
+      'doc-content-san-xuat-video': 7
+    }[doc.id] || 999,
+    updated_at: new Date().toISOString()
   });
 
   if (docError) {
     console.error(`  ❌ Document Error: ${docError.message}`);
     return;
   }
-  console.log(`  ✅ Document uploaded.`);
 
   if (quiz) {
-    console.log(`  📝 Uploading Quiz: ${quiz.title}...`);
     const { error: quizError } = await supabase.from('quizzes').upsert({
       id: quiz.quizId,
       document_id: quiz.documentId,
@@ -108,10 +127,9 @@ async function uploadDocAndQuiz(data) {
       return;
     }
 
-    // Upsert questions
     for (let i = 0; i < quiz.questions.length; i++) {
       const q = quiz.questions[i];
-      const { error: qError } = await supabase.from('quiz_questions').upsert({
+      await supabase.from('quiz_questions').upsert({
         id: q.id,
         quiz_id: quiz.quizId,
         question_text: q.questionText,
@@ -120,12 +138,6 @@ async function uploadDocAndQuiz(data) {
         sort_order: i
       });
 
-      if (qError) {
-        console.error(`    ❌ Question ${q.id} Error: ${qError.message}`);
-        continue;
-      }
-
-      // Upsert options
       const options = q.options.map((o, index) => ({
         id: o.id,
         question_id: q.id,
@@ -134,38 +146,39 @@ async function uploadDocAndQuiz(data) {
         sort_order: index
       }));
 
-      const { error: oError } = await supabase.from('quiz_options').upsert(options);
-      if (oError) {
-        console.error(`    ❌ Options for Question ${q.id} Error: ${oError.message}`);
-      }
+      await supabase.from('quiz_options').upsert(options);
     }
-    console.log(`  ✅ Quiz uploaded with ${quiz.questions.length} questions.`);
   }
+  console.log(`  ✅ Done.`);
+}
+
+function getAllMarkdownFiles(dir, files = []) {
+  const list = readdirSync(dir);
+  for (const file of list) {
+    const path = join(dir, file);
+    if (statSync(path).isDirectory()) {
+      getAllMarkdownFiles(path, files);
+    } else if (file.endsWith('.md')) {
+      files.push(path);
+    }
+  }
+  return files;
 }
 
 async function run() {
-  const files = [
-    join(ROOT_DIR, 'docs', 'Doc1_Gioi_Thieu_DECOCO.md'),
-    join(ROOT_DIR, 'docs', 'Doc2_Van_Hoa_Cong_Ty.md'),
-    join(ROOT_DIR, 'docs', 'Doc3_So_Do_To_Chuc_Phong_Ban.md'),
-    join(ROOT_DIR, 'docs', 'Doc4_Noi_Quy_Chung.md'),
-    join(ROOT_DIR, 'docs', 'Doc5_Gioi_Thieu_Phong_Marketing.md')
-  ];
+  const docsDir = join(ROOT_DIR, 'docs');
+  const files = getAllMarkdownFiles(docsDir);
 
   for (const file of files) {
-    if (existsSync(file)) {
-      try {
-        const data = parseMarkdown(file);
-        await uploadDocAndQuiz(data);
-      } catch (err) {
-        console.error(`❌ Error processing ${file}: ${err.message}`);
-      }
-    } else {
-      console.warn(`⚠️ File not found: ${file}`);
+    try {
+      const data = parseMarkdown(file);
+      await uploadDocAndQuiz(data);
+    } catch (err) {
+      console.error(`❌ Error processing ${file}: ${err.message}`);
     }
   }
 
-  console.log('\n🎉 Finished seeding onboarding docs.');
+  console.log('\n🎉 All documents synchronized to Supabase.');
 }
 
 run();
