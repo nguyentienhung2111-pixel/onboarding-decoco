@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard, FileText, MessageSquareText, Settings,
-  LogOut, Menu, X, Sparkles, ChevronRight, Shield
+  LogOut, Menu, X, Sparkles, ChevronRight, Shield, Users
 } from 'lucide-react';
 import type { SessionUser } from '@/lib/types';
 
@@ -17,6 +17,7 @@ const userNavItems = [
 
 const adminNavItems = [
   { href: '/admin', label: 'Admin Dashboard', icon: Shield },
+  { href: '/admin/users', label: 'Quản lý nhân viên', icon: Users },
 ];
 
 export default function AppShell({ user, children }: { user: SessionUser; children: React.ReactNode }) {
