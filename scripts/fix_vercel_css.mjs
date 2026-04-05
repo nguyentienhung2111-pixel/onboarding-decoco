@@ -8,7 +8,7 @@ const supabase = createClient(url, key);
 
 async function update() {
   const FINAL_HTML = `
-<!-- CSS RESET FOR VERCEL -> FIXING GLOBALS.CSS LEAKS -->
+<!-- CSS RESET FOR VERCEL -> FIXING GLOBALS.CSS AND ADDING VERTICAL LINES -->
 <style>
   .premium-table {
     width: 100%;
@@ -22,9 +22,18 @@ async function update() {
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
   }
   .premium-table th, .premium-table td {
-    border: none !important; /* OVERRIDE GLOBALS.CSS */
+    border: none !important; /* Dọn sạch tàn dư globals.css */
     padding: 14px !important;
   }
+  
+  /* Thêm đường kẻ dọc phân tách cột ngang giữa các ô (trừ ô cuối cùng) */
+  .premium-table th:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,0.25) !important;
+  }
+  .premium-table td:not(:last-child) {
+    border-right: 1px solid #f1f5f9 !important;
+  }
+
   .premium-table th {
     background-color: #be185d !important;
     color: #ffffff !important;
@@ -35,6 +44,9 @@ async function update() {
     background-color: #334155 !important;
     border-bottom: 2px solid #1e293b !important;
   }
+  .premium-table.slate th:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,0.15) !important;
+  }
   .premium-table.blue th {
     background-color: #0284c7 !important;
     border-bottom: 2px solid #0369a1 !important;
@@ -43,6 +55,7 @@ async function update() {
     color: #0f172a !important;
     background-color: #ffffff !important;
     border-bottom: 1px solid #f1f5f9 !important;
+    vertical-align: middle !important;
   }
   .premium-table tr:last-child td {
     border-bottom: none !important;
@@ -137,7 +150,7 @@ async function update() {
 
   const { error } = await supabase.from('documents').update({ content_html: FINAL_HTML }).eq('id', 'doc-content-san-xuat-video');
   if (error) console.log('❌ Error: ' + error.message);
-  else console.log('✅ Final Push Successful');
+  else console.log('✅ Final Push for Vertical Borders Successful!');
 }
 
 update();
