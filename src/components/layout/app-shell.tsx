@@ -13,6 +13,7 @@ const userNavItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/documents', label: 'Tài liệu', icon: FileText },
   { href: '/ai-chat', label: 'AI DECOCO', icon: MessageSquareText },
+  { href: '/settings', label: 'Cài đặt', icon: Settings },
 ];
 
 const adminNavItems = [

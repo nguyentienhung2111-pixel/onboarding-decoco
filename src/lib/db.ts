@@ -59,6 +59,14 @@ function mapUser(row: Record<string, unknown>): User {
   };
 }
 
+export async function updateUserPassword(userId: string, passwordHash: string): Promise<void> {
+  const { error } = await supabase()
+    .from('users')
+    .update({ password_hash: passwordHash })
+    .eq('id', userId);
+  if (error) throw error;
+}
+
 // ============ ORG ============
 
 export async function getOrgData(): Promise<OrgData> {
