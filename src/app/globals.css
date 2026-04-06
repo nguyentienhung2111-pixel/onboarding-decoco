@@ -502,6 +502,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--gray-500);
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-bottom: 12px;
@@ -882,4 +883,64 @@ h1, h2, h3, h4, h5, h6 {
   .chat-bubble {
     max-width: 90%;
   }
+}
+
+/* ============================================
+   FIX: Text bị chìm trong các block màu sáng
+   của nội dung tài liệu onboarding (content_html)
+   ============================================ */
+
+/* Tất cả các thẻ có inline background sáng bên trong vùng hiển thị tài liệu
+   cần được ép text màu đậm để đọc được */
+.doc-content div[style*="background"],
+.doc-content p[style*="background"],
+.doc-content span[style*="background"],
+.doc-content tr[style*="background"],
+.doc-content th[style*="background"],
+.doc-content td[style*="background"] {
+  color: #1a1a2e !important;
+}
+
+.doc-content div[style*="background"] *,
+.doc-content p[style*="background"] *,
+.doc-content span[style*="background"] *,
+.doc-content tr[style*="background"] *,
+.doc-content th[style*="background"] *,
+.doc-content td[style*="background"] * {
+  color: #1a1a2e !important;
+}
+
+/* Giữ nguyên màu cho thẻ strong/bold bên trong block — đậm hơn một chút */
+.doc-content div[style*="background"] strong,
+.doc-content p[style*="background"] strong,
+.doc-content div[style*="background"] b,
+.doc-content p[style*="background"] b {
+  color: #0f0f23 !important;
+}
+
+/* Giữ nguyên màu cho emoji — không bị ảnh hưởng */
+.doc-content div[style*="background"] .emoji,
+.doc-content p[style*="background"] .emoji {
+  color: inherit !important;
+}
+
+/* Đảm bảo link bên trong block vẫn nhìn thấy được */
+.doc-content div[style*="background"] a,
+.doc-content p[style*="background"] a {
+  color: #7c3aed !important;
+  text-decoration: underline;
+}
+
+/* Fix cho các thẻ li bên trong block */
+.doc-content div[style*="background"] li,
+.doc-content p[style*="background"] li,
+.doc-content div[style*="background"] ul,
+.doc-content div[style*="background"] ol {
+  color: #1a1a2e !important;
+}
+
+/* Fix cho code/pre bên trong block */
+.doc-content div[style*="background"] code {
+  color: #7c3aed !important;
+  background: rgba(124, 58, 237, 0.1) !important;
 }

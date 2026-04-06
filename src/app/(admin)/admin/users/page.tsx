@@ -62,7 +62,14 @@ export default function AdminUsersPage() {
       if (json.success) {
         setUsers(json.data.users);
         setOrgData(json.data.orgData);
+        if (json.data.orgData.departments.length === 0) {
+          setError('Không tìm thấy dữ liệu phòng ban trong hệ thống. Hãy kiểm tra lại cơ sở dữ liệu.');
+        }
+      } else {
+        setError(`Không thể tải dữ liệu tổ chức: ${json.error?.message || 'Lỗi không xác định'}`);
       }
+    } catch (err) {
+      setError('Lỗi kết nối server khi tải dữ liệu nhân viên');
     } finally {
       setLoading(false);
     }
@@ -94,6 +101,8 @@ export default function AdminUsersPage() {
     setEditingUser(null);
     setForm(emptyForm);
     setError('');
+    // Re-fetch data to ensure it's fresh when opening modal
+    fetchData();
     setShowModal(true);
   };
 
@@ -468,9 +477,9 @@ export default function AdminUsersPage() {
                     onChange={e => setForm({ ...form, departmentId: e.target.value, teamId: '', positionId: '' })}
                     style={selectStyle}
                   >
-                    <option value="">— Chọn phòng ban —</option>
+                    <option value="" style={optionStyle}>— Chọn phòng ban —</option>
                     {orgData.departments.map(d => (
-                      <option key={d.id} value={d.id}>{d.name}</option>
+                      <option key={d.id} value={d.id} style={optionStyle}>{d.name}</option>
                     ))}
                   </select>
                   <ChevronDown size={16} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#6B6D8A', pointerEvents: 'none' }} />
@@ -487,9 +496,9 @@ export default function AdminUsersPage() {
                     style={selectStyle}
                     disabled={!form.departmentId}
                   >
-                    <option value="">— Chọn team —</option>
+                    <option value="" style={optionStyle}>— Chọn team —</option>
                     {filteredTeams.map(t => (
-                      <option key={t.id} value={t.id}>{t.name}</option>
+                      <option key={t.id} value={t.id} style={optionStyle}>{t.name}</option>
                     ))}
                   </select>
                   <ChevronDown size={16} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#6B6D8A', pointerEvents: 'none' }} />
@@ -506,9 +515,9 @@ export default function AdminUsersPage() {
                     style={selectStyle}
                     disabled={!form.departmentId}
                   >
-                    <option value="">— Chọn vị trí —</option>
+                    <option value="" style={optionStyle}>— Chọn vị trí —</option>
                     {filteredPositions.map(p => (
-                      <option key={p.id} value={p.id}>{p.name}</option>
+                      <option key={p.id} value={p.id} style={optionStyle}>{p.name}</option>
                     ))}
                   </select>
                   <ChevronDown size={16} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#6B6D8A', pointerEvents: 'none' }} />
@@ -564,6 +573,13 @@ const inputStyle: React.CSSProperties = {
 const selectStyle: React.CSSProperties = {
   width: '100%', padding: '10px 14px', borderRadius: '8px',
   border: '1px solid #2D2F45', background: '#141627',
+  backgroundColor: '#141627', // Robustness for some browsers
   color: '#F9FAFB', fontSize: '14px', outline: 'none',
   appearance: 'none', boxSizing: 'border-box', cursor: 'pointer',
+};
+
+// CSS injection for <option> specifically to handle Windows native styling
+const optionStyle: React.CSSProperties = {
+  background: '#1E2035',
+  color: '#F9FAFB',
 };

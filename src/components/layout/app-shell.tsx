@@ -77,7 +77,7 @@ export default function AppShell({ user, children }: { user: SessionUser; childr
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`sidebar-link ${pathname.startsWith(item.href) ? 'active' : ''}`}
+                  className={`sidebar-link ${pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href)) ? 'active' : ''}`}
                   onClick={() => setSidebarOpen(false)}
                 >
                   <item.icon size={18} />

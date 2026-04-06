@@ -53,12 +53,12 @@ export default function QuizPage() {
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<QuizResult | null>(null);
-  const [startTime] = useState(Date.now());
+  const [startTime] = useState(() => Date.now());
 
   useEffect(() => {
     fetch(`/api/quizzes/${docId}`)
       .then(res => res.json())
-      .then(json => { if (json.success) setQuiz(json.data); })
+      .then((json: { success: boolean; data: QuizData }) => { if (json.success) setQuiz(json.data); })
       .finally(() => setLoading(false));
   }, [docId]);
 
@@ -102,7 +102,7 @@ export default function QuizPage() {
     setLoading(true);
     fetch(`/api/quizzes/${docId}`)
       .then(res => res.json())
-      .then(json => { if (json.success) setQuiz(json.data); })
+      .then((json: { success: boolean; data: QuizData }) => { if (json.success) setQuiz(json.data); })
       .finally(() => setLoading(false));
   }
 

@@ -107,14 +107,14 @@ export default function DocumentReaderPage() {
       <div id="doc-reader-content" className="doc-reader">
         {doc.contentHtml.includes('<!-- ORG_CHART_HERE -->') ? (
           <>
-            <div dangerouslySetInnerHTML={{ __html: doc.contentHtml.split('<!-- ORG_CHART_HERE -->')[0] }} />
+            <div className="doc-content" dangerouslySetInnerHTML={{ __html: doc.contentHtml.split('<!-- ORG_CHART_HERE -->')[0] }} />
             <div style={{ margin: '32px 0', height: '600px' }}>
               <OrganizationalChart />
             </div>
-            <div dangerouslySetInnerHTML={{ __html: doc.contentHtml.split('<!-- ORG_CHART_HERE -->')[1] }} />
+            <div className="doc-content" dangerouslySetInnerHTML={{ __html: doc.contentHtml.split('<!-- ORG_CHART_HERE -->')[1] }} />
           </>
         ) : (
-          <div dangerouslySetInnerHTML={{ __html: doc.contentHtml }} />
+          <div className="doc-content" dangerouslySetInnerHTML={{ __html: doc.contentHtml }} />
         )}
       </div>
 

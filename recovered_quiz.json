@@ -1,0 +1,548 @@
+{
+  "quizId": "quiz-content-san-xuat-video",
+  "documentId": "doc-content-san-xuat-video",
+  "title": "Quiz: Sản xuất video TikTok",
+  "passingScore": 7,
+  "questions": [
+    {
+      "id": "qcv_3",
+      "questionText": "Khi quay video, mỗi source (cảnh quay gốc) cần bao nhiêu góc quay?",
+      "questionType": "single_choice",
+      "explanation": "Thường cần 4–6 source với các góc quay khác nhau để có đủ chất liệu edit.",
+      "options": [
+        {
+          "id": "qcv_3_a",
+          "text": "1–2 source",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_3_b",
+          "text": "4–6 source",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_3_c",
+          "text": "8–10 source",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_3_d",
+          "text": "Chỉ cần 1 source là đủ",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_4",
+      "questionText": "Mỗi cảnh trong video nên kéo dài bao lâu trước khi đổi cảnh?",
+      "questionType": "single_choice",
+      "explanation": "Mỗi cảnh thường kéo dài 2–3 giây rồi đổi sang cảnh khác để giữ sự hấp dẫn.",
+      "options": [
+        {
+          "id": "qcv_4_a",
+          "text": "1 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_4_b",
+          "text": "2–3 giây",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_4_c",
+          "text": "5–7 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_4_d",
+          "text": "10 giây",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_5",
+      "questionText": "Khi video quay ở quán cafe bị ám vàng, cần chỉnh sang tone màu nào?",
+      "questionType": "single_choice",
+      "explanation": "Nếu video bị tối hoặc ám vàng, cần chỉnh lại sang tone vàng hồng — phù hợp với sản phẩm mạ vàng hồng của DECOCO.",
+      "options": [
+        {
+          "id": "qcv_5_a",
+          "text": "Tone xanh lạnh",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_5_b",
+          "text": "Tone vàng hồng",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_5_c",
+          "text": "Tone đen trắng",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_5_d",
+          "text": "Giữ nguyên, không chỉnh",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_6",
+      "questionText": "Font chữ nào dùng cho video unbox thông thường?",
+      "questionType": "single_choice",
+      "explanation": "Video unbox thông thường sử dụng font \"Nếp gấp\". Font viết tay in nghiêng dùng cho video lấp lánh quay siêu cận.",
+      "options": [
+        {
+          "id": "qcv_6_a",
+          "text": "Font viết tay in nghiêng",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_6_b",
+          "text": "Font \"Nếp gấp\"",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_6_c",
+          "text": "Font Arial",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_6_d",
+          "text": "Font serif cổ điển",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_2",
+      "questionText": "Tại sao không nên ngồi gần cửa sổ khi quay video sản phẩm DECOCO?",
+      "questionType": "single_choice",
+      "explanation": "Ánh sáng mặt trời trực tiếp sẽ không tạo được hiệu ứng lấp lánh khi dùng thấu kính quay sản phẩm.",
+      "options": [
+        {
+          "id": "qcv_2_a",
+          "text": "Vì quá nóng",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_2_b",
+          "text": "Vì ánh sáng mặt trời phá hiệu ứng lấp lánh qua thấu kính",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_2_c",
+          "text": "Vì gây tiếng ồn",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_2_d",
+          "text": "Vì bị phản chiếu vào camera",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_7",
+      "questionText": "Khi video có nền sáng, text cần xử lý viền như thế nào?",
+      "questionType": "single_choice",
+      "explanation": "Nền sáng → tô viền đen/ghi (chiều rộng 20). Nền tối → không bật viền, để nguyên chữ trắng.",
+      "options": [
+        {
+          "id": "qcv_7_a",
+          "text": "Tô viền đen hoặc ghi, chiều rộng 20",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_7_b",
+          "text": "Không cần viền",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_7_c",
+          "text": "Tô viền trắng",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_7_d",
+          "text": "Tô viền hồng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_8",
+      "questionText": "Hiệu ứng động cho text có thời gian bao lâu?",
+      "questionType": "single_choice",
+      "explanation": "Hiệu ứng vào: Rõ dần (0.4s), hiệu ứng ra: Mờ dần (0.4s).",
+      "options": [
+        {
+          "id": "qcv_8_a",
+          "text": "Vào 0.2s, ra 0.2s",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_8_b",
+          "text": "Vào 0.4s, ra 0.4s",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_8_c",
+          "text": "Vào 1s, ra 1s",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_8_d",
+          "text": "Không có hiệu ứng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_9",
+      "questionText": "Logo watermark cần được di chuyển đến vị trí mới sau mỗi bao lâu?",
+      "questionType": "single_choice",
+      "explanation": "Cứ mỗi 10 giây, kéo keyframe đến mốc đó và di chuyển logo sang vị trí khác.",
+      "options": [
+        {
+          "id": "qcv_9_a",
+          "text": "Mỗi 5 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_9_b",
+          "text": "Mỗi 10 giây",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_9_c",
+          "text": "Mỗi 20 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_9_d",
+          "text": "Không cần di chuyển",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_10",
+      "questionText": "Logo watermark nên được đặt ở vị trí nào trên video?",
+      "questionType": "single_choice",
+      "explanation": "Logo chỉ nên ở giữa màn hình, không di chuyển lung tung ra 4 góc vì sẽ gây phân tâm cho người xem.",
+      "options": [
+        {
+          "id": "qcv_10_a",
+          "text": "4 góc màn hình luân phiên",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_10_b",
+          "text": "Giữa màn hình",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_10_c",
+          "text": "Góc trên bên phải cố định",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_10_d",
+          "text": "Ẩn đi, không cần logo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_11",
+      "questionText": "Hiệu ứng \"Phóng to kim cương\" là hiệu ứng signature của DECOCO dùng cho video sản phẩm.",
+      "questionType": "true_false",
+      "explanation": "Đúng. Đây là hiệu ứng đặc trưng giúp sản phẩm lấp lánh nổi bật trong video.",
+      "options": [
+        {
+          "id": "qcv_11_a",
+          "text": "Đúng",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_11_b",
+          "text": "Sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_1",
+      "questionText": "Khi chọn địa điểm quay video DECOCO, nền nào được ưu tiên nhất?",
+      "questionType": "single_choice",
+      "explanation": "Nền tối màu, đặc biệt nền gỗ là đẹp nhất — giúp tôn lên sự lấp lánh của sản phẩm trang sức.",
+      "options": [
+        {
+          "id": "qcv_1_a",
+          "text": "Nền trắng sáng",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_1_b",
+          "text": "Nền tối màu (gỗ là tốt nhất)",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_1_c",
+          "text": "Nền nhiều màu sắc",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_1_d",
+          "text": "Nền gạch bông",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_12",
+      "questionText": "Thông số Cường độ của hiệu ứng kim cương nên giảm bớt khi nào?",
+      "questionType": "single_choice",
+      "explanation": "Nếu video gốc sản phẩm đã sáng và chói nhẹ rồi thì nên giảm bớt cường độ để không bị quá chói.",
+      "options": [
+        {
+          "id": "qcv_12_b",
+          "text": "Khi video gốc SP đã sáng và chói",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_12_c",
+          "text": "Khi video dài hơn 30 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_12_d",
+          "text": "Không bao giờ cần giảm",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_12_a",
+          "text": "Khi video quá tối",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_13",
+      "questionText": "Video TikTok của DECOCO thường có thời lượng bao lâu?",
+      "questionType": "single_choice",
+      "explanation": "Video hoàn chỉnh thường dài 15–30 giây — ngắn nhưng đủ hấp dẫn.",
+      "options": [
+        {
+          "id": "qcv_13_a",
+          "text": "5–10 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_13_b",
+          "text": "15–30 giây",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_13_c",
+          "text": "1–2 phút",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_13_d",
+          "text": "3–5 phút",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_14",
+      "questionText": "Thời gian hiệu ứng chuyển cảnh \"Thu phóng lấp lánh\" nên set bao lâu?",
+      "questionType": "single_choice",
+      "explanation": "Hiệu ứng chuyển cảnh thu phóng lấp lánh nên set 0.8–1.1 giây, tùy nhịp điệu video.",
+      "options": [
+        {
+          "id": "qcv_14_a",
+          "text": "0.3–0.5 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_14_b",
+          "text": "0.8–1.1 giây",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_14_c",
+          "text": "2–3 giây",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_14_d",
+          "text": "5 giây",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_15",
+      "questionText": "Bước \"Cà mịn da và làm sáng màu tay\" thuộc giai đoạn nào trong quy trình edit?",
+      "questionType": "single_choice",
+      "explanation": "Đây là bước 2.4 trong giai đoạn chỉnh sửa video, sau khi đã cắt cảnh, crop/zoom và chỉnh màu.",
+      "options": [
+        {
+          "id": "qcv_15_a",
+          "text": "Chọn source",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_15_b",
+          "text": "Chỉnh sửa video (Edit)",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_15_c",
+          "text": "Chèn logo",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_15_d",
+          "text": "Thêm âm thanh",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_16",
+      "questionText": "Source quay không đạt chuẩn có đặc điểm nào? (Chọn nhiều đáp án)",
+      "questionType": "multiple_choice",
+      "explanation": "Source không đạt chuẩn gồm: cháy sáng làm sai màu SP, bị dìm/không rõ SP, rung lắc, nền quá rối.",
+      "options": [
+        {
+          "id": "qcv_16_a",
+          "text": "Cháy sáng làm sai màu sản phẩm",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_16_b",
+          "text": "Rung lắc, không rõ sản phẩm",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_16_c",
+          "text": "Nền quá rối",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_16_d",
+          "text": "Nền gỗ tối màu",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_17",
+      "questionText": "Khi edit, sản phẩm cần được đặt ở vị trí nào trong khung hình?",
+      "questionType": "single_choice",
+      "explanation": "Cần zoom cho sản phẩm phóng to lên và nằm chính giữa màn hình, tránh để xa quá.",
+      "options": [
+        {
+          "id": "qcv_17_a",
+          "text": "Góc trên bên trái",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_17_b",
+          "text": "Chính giữa màn hình",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_17_c",
+          "text": "Phía dưới cùng",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_17_d",
+          "text": "Góc dưới bên phải",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_18",
+      "questionText": "Màu text nào phù hợp cho video lấp lánh quay cận sản phẩm?",
+      "questionType": "single_choice",
+      "explanation": "Video lấp lánh, cận sản phẩm dùng chữ vàng nhạt hoặc tím nhạt. Trắng/đen dùng cho video cafe unbox.",
+      "options": [
+        {
+          "id": "qcv_18_a",
+          "text": "Trắng hoặc đen",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_18_b",
+          "text": "Vàng nhạt hoặc tím nhạt",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_18_c",
+          "text": "Đỏ đậm",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_18_d",
+          "text": "Xanh neon",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_19",
+      "questionText": "Text trên video nên đặt ở vị trí 1/3 hoặc 1/4 khung hình, ưu tiên để trang sức ở giữa.",
+      "questionType": "true_false",
+      "explanation": "Đúng. Text đặt ở 1/3 hoặc 1/4 khung hình, ưu tiên để hình ảnh trang sức vào chính giữa.",
+      "options": [
+        {
+          "id": "qcv_19_a",
+          "text": "Đúng",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_19_b",
+          "text": "Sai",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "qcv_20",
+      "questionText": "Mỗi video cần kết hợp bao nhiêu kiểu cảnh quay khác nhau? (Chọn nhiều đáp án đúng)",
+      "questionType": "multiple_choice",
+      "explanation": "Mỗi video cần kết hợp ít nhất 3–4 kiểu cảnh quay khác nhau để tạo đa dạng và giữ chân người xem.",
+      "options": [
+        {
+          "id": "qcv_20_a",
+          "text": "Ít nhất 3–4 kiểu",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_20_b",
+          "text": "Chỉ 1 kiểu là đủ",
+          "isCorrect": false
+        },
+        {
+          "id": "qcv_20_c",
+          "text": "Kết hợp nhiều kiểu để tạo đa dạng",
+          "isCorrect": true
+        },
+        {
+          "id": "qcv_20_d",
+          "text": "Không cần đa dạng, lặp lại 1 cảnh",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase';
-import { cookies } from 'next/headers';
+import { requireAdmin, hashPassword } from '@/lib/auth';
 
 // PUT /api/admin/users/[userId] — Cập nhật thông tin nhân viên
 export async function PUT(
@@ -8,20 +8,12 @@ export async function PUT(
   { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
-    const supabase = createServerClient();
     const { userId } = await params;
 
-    // Verify admin
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get('session');
-    if (!sessionCookie) {
-      return NextResponse.json({ success: false, error: { code: 'UNAUTHORIZED', message: 'Chưa đăng nhập' } }, { status: 401 });
-    }
-    const session = JSON.parse(sessionCookie.value);
-    if (session.role !== 'admin') {
-      return NextResponse.json({ success: false, error: { code: 'FORBIDDEN', message: 'Không có quyền' } }, { status: 403 });
-    }
-
+    // Verify admin using auth library
+    await requireAdmin();
+    
+    const supabase = createServerClient();
     const body = await req.json();
     const updates: Record<string, unknown> = {};
 
@@ -34,8 +26,9 @@ export async function PUT(
     if (body.positionId !== undefined) updates.position_id = body.positionId || null;
     if (body.employmentType !== undefined) updates.employment_type = body.employmentType;
     if (body.status !== undefined) updates.status = body.status;
+    
     if (body.password !== undefined && body.password.length > 0) {
-      updates.password_hash = body.password; // In production, hash this!
+      updates.password_hash = await hashPassword(body.password);
     }
 
     if (Object.keys(updates).length === 0) {
@@ -64,6 +57,10 @@ export async function PUT(
 
     return NextResponse.json({ success: true, data: { message: 'Cập nhật thành công' } });
   } catch (err) {
+    if (err instanceof Error && (err.message === 'UNAUTHORIZED' || err.message === 'FORBIDDEN')) {
+      const status = err.message === 'UNAUTHORIZED' ? 401 : 403;
+      return NextResponse.json({ success: false, error: { code: err.message, message: 'Không có quyền' } }, { status });
+    }
     console.error('PUT /api/admin/users/[userId] error:', err);
     return NextResponse.json({ success: false, error: { code: 'SERVER_ERROR', message: 'Lỗi server' } }, { status: 500 });
   }
@@ -75,19 +72,12 @@ export async function DELETE(
   { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
-    const supabase = createServerClient();
     const { userId } = await params;
 
     // Verify admin
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get('session');
-    if (!sessionCookie) {
-      return NextResponse.json({ success: false, error: { code: 'UNAUTHORIZED', message: 'Chưa đăng nhập' } }, { status: 401 });
-    }
-    const session = JSON.parse(sessionCookie.value);
-    if (session.role !== 'admin') {
-      return NextResponse.json({ success: false, error: { code: 'FORBIDDEN', message: 'Không có quyền' } }, { status: 403 });
-    }
+    const session = await requireAdmin();
+    
+    const supabase = createServerClient();
 
     // Prevent self-deletion
     if (userId === session.id) {
@@ -95,12 +85,13 @@ export async function DELETE(
     }
 
     // Delete related data first (progress, quiz attempts)
-    await supabase.from('quiz_attempt_answers')
-      .delete()
-      .in('attempt_id', 
-        (await supabase.from('quiz_attempts').select('id').eq('user_id', userId)).data?.map((a: { id: string }) => a.id) || []
-      );
-    await supabase.from('quiz_attempts').delete().eq('user_id', userId);
+    const { data: attempts } = await supabase.from('quiz_attempts').select('id').eq('user_id', userId);
+    if (attempts && attempts.length > 0) {
+      const attemptIds = attempts.map(a => a.id);
+      await supabase.from('quiz_attempt_answers').delete().in('attempt_id', attemptIds);
+      await supabase.from('quiz_attempts').delete().in('id', attemptIds);
+    }
+    
     await supabase.from('user_progress').delete().eq('user_id', userId);
 
     // Delete user
@@ -109,6 +100,10 @@ export async function DELETE(
 
     return NextResponse.json({ success: true, data: { message: 'Xoá nhân viên thành công' } });
   } catch (err) {
+    if (err instanceof Error && (err.message === 'UNAUTHORIZED' || err.message === 'FORBIDDEN')) {
+      const status = err.message === 'UNAUTHORIZED' ? 401 : 403;
+      return NextResponse.json({ success: false, error: { code: err.message, message: 'Không có quyền' } }, { status });
+    }
     console.error('DELETE /api/admin/users/[userId] error:', err);
     return NextResponse.json({ success: false, error: { code: 'SERVER_ERROR', message: 'Lỗi server' } }, { status: 500 });
   }

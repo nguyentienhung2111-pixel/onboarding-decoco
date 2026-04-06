@@ -28,13 +28,12 @@ function OrgNode({ data }: NodeProps) {
 
   const isCEO = role === 'ceo';
   const isManager = role === 'manager';
-  const isFT = employment === 'FT';
   const isPT = employment === 'PT';
 
   let bg = '#1E293B';
   let borderColor = '#334155';
   let borderWidth = '1px';
-  let borderStyle = isPT ? 'dashed' : 'solid';
+  const borderStyle = isPT ? 'dashed' : 'solid';
   let color = '#E2E8F0';
   let fontWeight = 500;
   let boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
