@@ -772,21 +772,52 @@ h1, h2, h3, h4, h5, h6 {
 
 .doc-reader table {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 16px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 24px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 0 0 1px var(--gray-200);
 }
 
 .doc-reader th, .doc-reader td {
-  padding: 10px 14px;
-  border: 1px solid var(--gray-200);
+  padding: 12px 16px;
   text-align: left;
   font-size: 14px;
+  border-bottom: 1px solid var(--gray-200);
+  border-right: 1px solid var(--gray-200);
+  vertical-align: middle;
+  line-height: 1.55;
+}
+
+.doc-reader th:last-child,
+.doc-reader td:last-child {
+  border-right: none;
+}
+
+.doc-reader tr:last-child td {
+  border-bottom: none;
 }
 
 .doc-reader th {
-  background: var(--gray-50);
-  font-weight: 600;
+  background: var(--gray-100);
+  font-weight: 700;
+  font-size: 13px;
   color: var(--gray-700);
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.doc-reader tbody tr:hover td {
+  background: rgba(124, 58, 237, 0.04);
+}
+
+/* Preserve inline background colors set per-row/cell in content HTML */
+.doc-reader td[style*="background"],
+.doc-reader th[style*="background"],
+.doc-reader tr[style*="background"] td,
+.doc-reader tr[style*="background"] th {
+  /* inline styles take priority — no override needed */
 }
 
 /* ============== TABLE ============== */
@@ -908,6 +939,29 @@ h1, h2, h3, h4, h5, h6 {
 .doc-content th[style*="background"] *,
 .doc-content td[style*="background"] * {
   color: #1a1a2e !important;
+}
+
+/* Override để cho phép text màu trắng nổi bật trên nền đậm khi được chỉ định */
+.doc-content tr[style*="color: #ffffff"] th,
+.doc-content tr[style*="color: white"] th,
+.doc-content tr[style*="color: #ffffff"] td,
+.doc-content tr[style*="color: white"] td,
+.doc-content th[style*="color: #ffffff"],
+.doc-content th[style*="color: white"],
+.doc-content td[style*="color: #ffffff"],
+.doc-content td[style*="color: white"],
+.doc-content p[style*="color: #ffffff"],
+.doc-content p[style*="color: white"],
+.doc-content div[style*="color: #ffffff"],
+.doc-content div[style*="color: white"] {
+  color: #ffffff !important;
+}
+
+.doc-content tr[style*="color: #ffffff"] strong,
+.doc-content tr[style*="color: white"] strong,
+.doc-content th[style*="color: #ffffff"] strong,
+.doc-content th[style*="color: white"] strong {
+  color: #ffffff !important;
 }
 
 /* Giữ nguyên màu cho thẻ strong/bold bên trong block — đậm hơn một chút */
