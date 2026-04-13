@@ -799,6 +799,22 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
 }
 
+/* Bo tròn 4 góc bảng bằng cách gán trực tiếp lên ô góc */
+.doc-reader tr:first-child th:first-child,
+.doc-reader tr:first-child td:first-child {
+  border-top-left-radius: var(--radius-md);
+}
+.doc-reader tr:first-child th:last-child,
+.doc-reader tr:first-child td:last-child {
+  border-top-right-radius: var(--radius-md);
+}
+.doc-reader tr:last-child td:first-child {
+  border-bottom-left-radius: var(--radius-md);
+}
+.doc-reader tr:last-child td:last-child {
+  border-bottom-right-radius: var(--radius-md);
+}
+
 .doc-reader th {
   background: var(--gray-100);
   font-weight: 700;
