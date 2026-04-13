@@ -772,68 +772,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .doc-reader table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
   margin-bottom: 24px;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.18), 0 0 0 1px var(--gray-200);
+  box-shadow: 0 0 0 1px var(--gray-200), 0 2px 8px rgba(0,0,0,0.10);
 }
 
-.doc-reader th, .doc-reader td {
+.doc-reader th,
+.doc-reader td {
   padding: 12px 16px;
   text-align: left;
   font-size: 14px;
-  border-bottom: 1px solid var(--gray-200);
-  border-right: 1px solid var(--gray-200);
   vertical-align: middle;
   line-height: 1.55;
 }
 
-.doc-reader th:last-child,
-.doc-reader td:last-child {
-  border-right: none;
-}
-
-.doc-reader tr:last-child td {
-  border-bottom: none;
-}
-
-/* Bo tròn 4 góc bảng bằng cách gán trực tiếp lên ô góc */
-.doc-reader tr:first-child th:first-child,
-.doc-reader tr:first-child td:first-child {
-  border-top-left-radius: var(--radius-md);
-}
-.doc-reader tr:first-child th:last-child,
-.doc-reader tr:first-child td:last-child {
-  border-top-right-radius: var(--radius-md);
-}
-.doc-reader tr:last-child td:first-child {
-  border-bottom-left-radius: var(--radius-md);
-}
-.doc-reader tr:last-child td:last-child {
-  border-bottom-right-radius: var(--radius-md);
-}
-
 .doc-reader th {
-  background: var(--gray-100);
   font-weight: 700;
   font-size: 13px;
-  color: var(--gray-700);
-  letter-spacing: 0.01em;
-  text-transform: none;
-}
-
-.doc-reader tbody tr:hover td {
-  background: rgba(124, 58, 237, 0.04);
-}
-
-/* Preserve inline background colors set per-row/cell in content HTML */
-.doc-reader td[style*="background"],
-.doc-reader th[style*="background"],
-.doc-reader tr[style*="background"] td,
-.doc-reader tr[style*="background"] th {
-  /* inline styles take priority — no override needed */
 }
 
 /* ============== TABLE ============== */
