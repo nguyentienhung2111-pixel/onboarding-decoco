@@ -109,8 +109,8 @@ export default function AppShell({ user, children }: { user: SessionUser; childr
         <header className="app-header">
           <button
             onClick={() => setSidebarOpen(true)}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'none', padding: '8px' }}
-            className="mobile-menu-btn"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px' }}
+            className="mobile-menu-btn block md:hidden"
           >
             <Menu size={24} color="#E2E4EB" />
           </button>
@@ -127,12 +127,7 @@ export default function AppShell({ user, children }: { user: SessionUser; childr
           {children}
         </div>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .mobile-menu-btn { display: block !important; }
-        }
-      `}</style>
     </div>
   );
 }
+

@@ -60,15 +60,32 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
   try {
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get(SESSION_COOKIE);
-    if (!sessionCookie?.value) return null;
-    const session = JSON.parse(sessionCookie.value) as SessionUser;
-    const user = await getUserById(session.id);
-    if (!user || user.status === 'inactive') return null;
-    return session;
-  } catch {
+    
+    if (!sessionCookie?.value) {
+      return null;
+    }
+
+    try {
+      const session = JSON.parse(sessionCookie.value) as SessionUser;
+      
+      // Safety check: ensure DB is reachable
+      const user = await getUserById(session.id);
+      if (!user || user.status === 'inactive') {
+        console.warn(`[AUTH] User session invalid or inactive: ${session.id}`);
+        return null;
+      }
+      
+      return session;
+    } catch (parseError) {
+      console.error('[AUTH] Failed to parse session JSON:', parseError);
+      return null;
+    }
+  } catch (error) {
+    console.error('[AUTH] Critical error retrieving current user:', error);
     return null;
   }
 }
+
 
 export async function requireAuth(): Promise<SessionUser> {
   const user = await getCurrentUser();

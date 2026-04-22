@@ -20,13 +20,25 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export async function getUserById(id: string): Promise<User | undefined> {
-  const { data, error } = await supabase()
-    .from('users')
-    .select('*')
-    .eq('id', id)
-    .single();
-  if (error || !data) return undefined;
-  return mapUser(data);
+  try {
+    const { data, error } = await supabase()
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error) {
+      if (error.code === 'PGRST116') return undefined; // Not found
+      console.error('[DB] getUserById Error:', error);
+      throw error;
+    }
+    
+    if (!data) return undefined;
+    return mapUser(data);
+  } catch (err) {
+    console.error('[DB] getUserById FAILED:', err);
+    throw err;
+  }
 }
 
 export async function getUserByEmail(email: string): Promise<User | undefined> {
@@ -180,52 +192,86 @@ export async function getQuizzes(): Promise<Quiz[]> {
 }
 
 export async function getQuizByDocumentId(docId: string): Promise<Quiz | undefined> {
-  const { data, error } = await supabase()
-    .from('quizzes')
-    .select('*')
-    .eq('document_id', docId)
-    .single();
-  if (error || !data) return undefined;
+  try {
+    const { data, error } = await supabase()
+      .from('quizzes')
+      .select('*')
+      .eq('document_id', docId)
+      .single();
+    
+    if (error) {
+      if (error.code === 'PGRST116') return undefined; // Not found
+      console.error('[DB] getQuizByDocumentId Error:', error);
+      throw error;
+    }
+    
+    if (!data) return undefined;
 
-  const questions = await getQuizQuestions(data.id);
-  return {
-    id: data.id,
-    documentId: data.document_id,
-    title: data.title,
-    passingScore: data.passing_score,
-    timeLimitMinutes: data.time_limit_minutes,
-    isActive: data.is_active,
-    questions,
-  };
+    const questions = await getQuizQuestions(data.id);
+    return {
+      id: data.id,
+      documentId: data.document_id,
+      title: data.title,
+      passingScore: data.passing_score,
+      timeLimitMinutes: data.time_limit_minutes,
+      isActive: data.is_active,
+      questions,
+    };
+  } catch (err) {
+    console.error('[DB] getQuizByDocumentId FAILED:', err);
+    throw err;
+  }
 }
 
 async function getQuizQuestions(quizId: string): Promise<QuizQuestion[]> {
-  const { data: qRows } = await supabase()
-    .from('quiz_questions')
-    .select('*')
-    .eq('quiz_id', quizId)
-    .order('sort_order');
-
-  const questions: QuizQuestion[] = [];
-  for (const q of qRows || []) {
-    const { data: optRows } = await supabase()
-      .from('quiz_options')
+  try {
+    const { data: qRows, error: qError } = await supabase()
+      .from('quiz_questions')
       .select('*')
-      .eq('question_id', q.id)
+      .eq('quiz_id', quizId)
       .order('sort_order');
 
-    questions.push({
+    if (qError) {
+      console.error('[DB] getQuizQuestions (questions) Error:', qError);
+      throw qError;
+    }
+    
+    if (!qRows || qRows.length === 0) return [];
+
+    // Batch fetch all options for all questions at once
+    const questionIds = qRows.map(q => q.id);
+    const { data: allOptions, error: oError } = await supabase()
+      .from('quiz_options')
+      .select('*')
+      .in('question_id', questionIds)
+      .order('sort_order');
+
+    if (oError) {
+      console.error('[DB] getQuizQuestions (options) Error:', oError);
+      throw oError;
+    }
+
+    const options = allOptions || [];
+
+    return qRows.map(q => ({
       id: q.id,
       questionText: q.question_text,
       questionType: q.question_type,
       explanation: q.explanation,
-      options: (optRows || []).map((o): QuizOption => ({
-        id: o.id, text: o.text, isCorrect: o.is_correct,
-      })),
-    });
+      options: options
+        .filter(o => o.question_id === q.id)
+        .map((o): QuizOption => ({
+          id: o.id,
+          text: o.text,
+          isCorrect: o.is_correct,
+        })),
+    }));
+  } catch (err) {
+    console.error('[DB] getQuizQuestions FAILED:', err);
+    throw err;
   }
-  return questions;
 }
+
 
 // ============ PROGRESS ============
 

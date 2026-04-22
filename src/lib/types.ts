@@ -110,6 +110,44 @@ export interface UserProgress {
   quizPassedAt: string | null;
 }
 
+// Client-side types used by QuizClient component
+export interface QuizData {
+  quizId: string;
+  documentId: string;
+  title: string;
+  passingScore: number;
+  timeLimitMinutes: number | null;
+  totalQuestions: number;
+  hasRead: boolean;
+  pastAttempts: number;
+  bestScore: number | null;
+  questions: {
+    id: string;
+    questionText: string;
+    questionType: QuestionType;
+    options: { id: string; text: string }[];
+  }[];
+}
+
+export interface QuizResult {
+  attemptId: string;
+  score: number;
+  correctCount: number;
+  totalQuestions: number;
+  isPassed: boolean;
+  passingScore: number;
+  results: {
+    questionId: string;
+    questionText: string;
+    questionType: QuestionType;
+    selectedOptionIds: string[];
+    correctOptionIds: string[];
+    isCorrect: boolean;
+    explanation: string;
+    options: QuizOption[];
+  }[];
+}
+
 export interface QuizAttemptAnswer {
   questionId: string;
   selectedOptionIds: string[];

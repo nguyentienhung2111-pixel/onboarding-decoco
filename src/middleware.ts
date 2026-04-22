@@ -21,23 +21,30 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Check admin routes
-  if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin/')) {
-    try {
-      const session = JSON.parse(sessionCookie.value);
+  // Double check session JSON validity
+  try {
+    const session = JSON.parse(sessionCookie.value);
+    
+    // Check admin routes
+    if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin/')) {
       if (session.role !== 'admin' && session.role !== 'manager') {
         if (pathname.startsWith('/api/')) {
           return NextResponse.json({ success: false, error: { code: 'FORBIDDEN', message: 'Không có quyền truy cập' } }, { status: 403 });
         }
         return NextResponse.redirect(new URL('/dashboard', request.url));
       }
-    } catch {
-      return NextResponse.redirect(new URL('/login', request.url));
     }
+  } catch (error) {
+    console.error('Middleware session parse error:', error);
+    // If cookie is corrupted, treats as unauthorized
+    const response = NextResponse.redirect(new URL('/login', request.url));
+    response.cookies.delete('decoco_session');
+    return response;
   }
 
   return NextResponse.next();
 }
+
 
 export const config = {
   matcher: [

@@ -1,5 +1,5 @@
-// scripts/sync-all-docs.mjs
-import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
+// scripts/sync-fix-tables.mjs
+import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createClient } from '@supabase/supabase-js';
@@ -21,7 +21,7 @@ if (existsSync(envPath)) {
 }
 
 if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  console.error('❌ Credentials not found in .env.local');
+  console.error('❌ Credentials not found in .env.local. Please ensure NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set.');
   process.exit(1);
 }
 
@@ -70,19 +70,7 @@ async function uploadDocAndQuiz(data) {
 
   console.log(`🚀 Syncing: ${doc.title} (${doc.id})...`);
   
-  // Assignment logic
-  let assignedTeamId = null;
-  let assignedDeptId = null;
-  let isGeneral = false;
-
-  if (doc.docType === 'general') {
-    isGeneral = true;
-  } else if (doc.docType === 'team' || filePath.includes('Team Content')) {
-    assignedTeamId = 'team1'; // Content Team
-    assignedDeptId = 'dept1'; // Marketing
-  } else if (doc.docType === 'department') {
-    assignedDeptId = 'dept1'; // Default to Marketing for now
-  }
+  const isGeneral = true; // For Docs 1-4, these are all general
 
   const { error: docError } = await supabase.from('documents').upsert({
     id: doc.id,
@@ -94,19 +82,11 @@ async function uploadDocAndQuiz(data) {
     summary: doc.summary,
     content_html: doc.contentHtml,
     is_general: isGeneral,
-    assigned_team_id: assignedTeamId,
-    assigned_department_id: assignedDeptId,
     sort_order: {
       'doc-gioi-thieu': 1,
       'doc-van-hoa': 2,
       'doc-so-do-to-chuc': 3,
-      'doc-noi-quy-chung': 4,
-      'doc-phong-marketing': 5,
-      'doc-phong-van-hanh': 6,
-      'doc-content-khach-hang-dinh-huong': 7,
-      'doc-content-san-xuat-video': 8,
-      'doc-content-dang-bai-quan-ly': 9,
-      'doc-content-product-training': 10
+      'doc-noi-quy-chung': 4
     }[doc.id] || 999,
     updated_at: new Date().toISOString()
   });
@@ -130,58 +110,65 @@ async function uploadDocAndQuiz(data) {
       return;
     }
 
+    // Upsert questions
     for (let i = 0; i < quiz.questions.length; i++) {
-      const q = quiz.questions[i];
-      await supabase.from('quiz_questions').upsert({
-        id: q.id,
-        quiz_id: quiz.quizId,
-        question_text: q.questionText,
-        question_type: q.questionType,
-        explanation: q.explanation,
-        sort_order: i
-      });
-
-      const options = q.options.map((o, index) => ({
-        id: o.id,
-        question_id: q.id,
-        text: o.text,
-        is_correct: o.isCorrect,
-        sort_order: index
-      }));
-
-      await supabase.from('quiz_options').upsert(options);
+        const q = quiz.questions[i];
+        await supabase.from('quiz_questions').upsert({
+          id: q.id,
+          quiz_id: quiz.quizId,
+          question_text: q.questionText,
+          question_type: q.questionType,
+          explanation: q.explanation,
+          sort_order: i
+        });
+  
+        // Upsert options
+        const options = q.options.map((o, index) => ({
+          id: o.id,
+          question_id: q.id,
+          text: o.text,
+          is_correct: o.isCorrect,
+          sort_order: index
+        }));
+  
+        await supabase.from('quiz_options').upsert(options);
     }
   }
   console.log(`  ✅ Done.`);
 }
 
-function getAllMarkdownFiles(dir, files = []) {
-  const list = readdirSync(dir);
-  for (const file of list) {
-    const path = join(dir, file);
-    if (statSync(path).isDirectory()) {
-      getAllMarkdownFiles(path, files);
-    } else if (file.endsWith('.md')) {
-      files.push(path);
-    }
-  }
-  return files;
-}
-
 async function run() {
-  const docsDir = join(ROOT_DIR, 'docs');
-  const files = getAllMarkdownFiles(docsDir);
+  const docsToSync = [
+    'Doc1_Gioi_Thieu_DECOCO.md',
+    'Doc2_Van_Hoa_Cong_Ty.md',
+    'Doc3_So_Do_To_Chuc_Phong_Ban.md',
+    'Doc4_Noy_Quy_Chung.md' // Wait, let me check the file name for Doc 4
+  ];
 
-  for (const file of files) {
-    try {
-      const data = parseMarkdown(file);
-      await uploadDocAndQuiz(data);
-    } catch (err) {
-      console.error(`❌ Error processing ${file}: ${err.message}`);
+  // Actually, I'll use the correct names from the directory listing.
+  const targetFiles = [
+    join(ROOT_DIR, 'docs', 'Doc1_Gioi_Thieu_DECOCO.md'),
+    join(ROOT_DIR, 'docs', 'Doc2_Van_Hoa_Cong_Ty.md'),
+    join(ROOT_DIR, 'docs', 'Doc3_So_Do_To_Chuc_Phong_Ban.md'),
+    join(ROOT_DIR, 'docs', 'Doc4_Noi_Quy_Chung.md')
+  ];
+
+  console.log('🔄 Starting focused sync for Docs 1-4... \n');
+
+  for (const file of targetFiles) {
+    if (existsSync(file)) {
+      try {
+        const data = parseMarkdown(file);
+        await uploadDocAndQuiz(data);
+      } catch (err) {
+        console.error(`❌ Error processing ${file}: ${err.message}`);
+      }
+    } else {
+      console.error(`❌ File not found: ${file}`);
     }
   }
 
-  console.log('\n🎉 All documents synchronized to Supabase.');
+  console.log('\n🎉 Finished updating Docs 1-4 to Supabase.');
 }
 
 run();
