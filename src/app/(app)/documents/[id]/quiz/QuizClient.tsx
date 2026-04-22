@@ -40,11 +40,19 @@ export default function QuizClient({ docId }: { docId: string }) {
       });
   }, [docId]);
 
-  function selectOption(questionId: string, optionId: string) {
-    setAnswers(prev => ({
-      ...prev,
-      [questionId]: [optionId],
-    }));
+  function selectOption(questionId: string, optionId: string, isMultiple: boolean) {
+    setAnswers(prev => {
+      if (isMultiple) {
+        // Toggle: add if not selected, remove if already selected
+        const current = prev[questionId] || [];
+        const updated = current.includes(optionId)
+          ? current.filter(id => id !== optionId)
+          : [...current, optionId];
+        return { ...prev, [questionId]: updated };
+      }
+      // Single choice / true_false: replace
+      return { ...prev, [questionId]: [optionId] };
+    });
   }
 
   async function handleSubmit() {
@@ -180,14 +188,22 @@ export default function QuizClient({ docId }: { docId: string }) {
 
       <div style={{ background: '#1E2132', border: '1px solid #2D314D', borderRadius: '16px', padding: '32px', marginBottom: '24px' }}>
         <p style={{ fontSize: '13px', color: '#6B6D8A', marginBottom: '12px' }}>Câu {currentQ + 1}</p>
-        <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '24px', lineHeight: 1.5 }}>{question?.questionText}</h3>
+        <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px', lineHeight: 1.5 }}>{question?.questionText}</h3>
+        {question?.questionType === 'multiple_choice' && (
+          <p style={{ fontSize: '13px', color: '#a78bfa', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '3px', border: '2px solid #a78bfa', fontSize: '10px' }}>✓</span>
+            Chọn nhiều đáp án
+          </p>
+        )}
+        {question?.questionType !== 'multiple_choice' && <div style={{ marginBottom: '16px' }} />}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {question?.options?.map(opt => {
+            const isMultiple = question.questionType === 'multiple_choice';
             const isSelected = answers[question.id]?.includes(opt.id);
             return (
               <div 
                 key={opt.id} 
-                onClick={() => selectOption(question.id, opt.id)}
+                onClick={() => selectOption(question.id, opt.id, isMultiple)}
                 style={{ 
                   padding: '16px', 
                   borderRadius: '12px', 
@@ -200,7 +216,13 @@ export default function QuizClient({ docId }: { docId: string }) {
                   transition: 'all 0.2s'
                 }}
               >
-                <div style={{ width: '18px', height: '18px', borderRadius: '50%', border: isSelected ? '5px solid #7c3aed' : '2px solid #2D314D', background: isSelected ? 'white' : 'transparent', flexShrink: 0 }} />
+                {isMultiple ? (
+                  <div style={{ width: '18px', height: '18px', borderRadius: '4px', border: isSelected ? 'none' : '2px solid #2D314D', background: isSelected ? '#7c3aed' : 'transparent', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {isSelected && <span style={{ color: 'white', fontSize: '12px', fontWeight: 700 }}>✓</span>}
+                  </div>
+                ) : (
+                  <div style={{ width: '18px', height: '18px', borderRadius: '50%', border: isSelected ? '5px solid #7c3aed' : '2px solid #2D314D', background: isSelected ? 'white' : 'transparent', flexShrink: 0 }} />
+                )}
                 <span>{opt.text}</span>
               </div>
             );
