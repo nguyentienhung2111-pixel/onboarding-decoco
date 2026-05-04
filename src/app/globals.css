@@ -789,8 +789,15 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
-/* Fallback cho cell KHÔNG có inline color (dang-bai case) — Chuyển sang đen và Bold */
+/* Fallback cho cell KHÔNG có inline color (dang-bai case) — Chuyển sang đen, chỉ bold những gì cần thiết */
 .doc-reader td:not([style*="color"]) {
+  color: #000000 !important;
+  font-weight: 400; /* Reverted from 700 */
+}
+
+/* Chỉ Bold những phần "cần nhấn mạnh" bị ẩn màu trắng */
+.doc-reader td:not([style*="color"]) strong,
+.doc-reader td:not([style*="color"]) b {
   color: #000000 !important;
   font-weight: 700 !important;
 }
@@ -818,6 +825,12 @@ h1, h2, h3, h4, h5, h6 {
 .doc-reader div[style*="overflow: hidden"] > table,
 .doc-reader div[style*="overflow:hidden"] > table {
   margin-bottom: 0 !important;
+}
+
+/* Đường kẻ dọc phân tách cột — Màu đen theo yêu cầu Photo 2 */
+.doc-reader table td:not(:last-child),
+.doc-reader table th:not(:last-child) {
+  border-right: 1px solid #000000 !important;
 }
 
 /* ============== TABLE ============== */
