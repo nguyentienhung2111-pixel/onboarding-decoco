@@ -1,7 +1,7 @@
 # Báo cáo Lỗi — Round 4
 
 ## Trạng thái
-ĐANG SỬA CHỮA
+THÀNH CÔNG (Đã push lên GitHub và đồng bộ Vercel)
 
 ## Tiêu đề Lỗi
 Lỗi hiển thị bảng: Text trắng trên nền trắng (dang-bai) và thiếu đường kẻ dọc phân tách cột (san-xuat-video).
