@@ -1,68 +1,43 @@
-# Báo cáo Lỗi — Round 5
+# Báo cáo Lỗi — Round 6
 
 ## Trạng thái
 ĐÃ SỬA — THÀNH CÔNG
 
 ### Kết quả kiểm tra:
-- 62 `<td>` đã được bổ sung `color: #0f172a !important; background-color: #ffffff !important;`
-- 7 `<th>` header đã chuyển sang nền đậm (`#be185d`) với text trắng
-- CSS globals.css đã revert về layout-only (bỏ hết color/background hacks)
-- Build Next.js: ✅ Thành công
+- 0 wrapper `<div>` còn lại (đã loại bỏ triệt để)
+- 0 `<style>` blocks còn lại
+- 0 class `premium-table` còn lại
+- 20 `border-right` đã được thêm (đường kẻ dọc phân tách cột)
+- 46 `<td>` có color `#0f172a` (text đen)
 
 ## Tiêu đề Lỗi
-Bảng trong doc-content-dang-bai-quan-ly bị ẩn text do HTML trong database thiếu inline styles cho `<td>`.
+Bảng trong doc-content-san-xuat-video cần chuẩn hóa HTML theo chuẩn doc-phong-marketing.
 
 ## Mô tả Lỗi
-Bảng trong tài liệu `doc-content-dang-bai-quan-ly` hiển thị khác hoàn toàn so với `doc-phong-marketing` dù cùng render qua component `doc-reader`. Nguyên nhân gốc rễ **KHÔNG phải CSS globals** mà là **content_html trong database**.
+Bảng trong `doc-content-san-xuat-video` có cấu trúc HTML khác biệt so với chuẩn `doc-phong-marketing`:
+- Có wrapper `<div>` bọc ngoài → gây white gap ở đáy.
+- Có `<style>` block + class `premium-table` → CSS xung đột.
+- Thiếu `border-right` cho `<th>` và `<td>` → không có đường kẻ dọc.
 
-## Các bước tái hiện
-1. Mở `doc-content-dang-bai-quan-ly`: Text ẩn, header nhạt.
-2. Mở `doc-phong-marketing`: Bảng đẹp, text rõ, header đậm.
-
-## Kết quả Thực tế vs Kết quả Mong đợi
-- **Thực tế:** Bảng dang-bai có `<td>` không có inline color/background → thừa kế dark mode (text trắng).
-- **Mong đợi:** Tất cả `<td>` phải có `color: #0f172a !important; background-color: #ffffff !important;` giống doc-phong-marketing.
-
----
-
-## Phân tích Nguyên nhân Gốc rễ (Root Cause Analysis)
-
-### So sánh cấu trúc HTML:
+## Phân tích Nguyên nhân Gốc rễ
+Cùng lỗi gốc như Round 5: HTML content trong database không đồng nhất giữa các tài liệu.
 
 ```
-doc-phong-marketing (✅ TỐT):
-<td style="border-bottom: 1px solid #fbcfe8;
-           border-right: 1px solid #fbcfe8;
-           padding: 12px;
-           color: #0f172a !important;           ← CÓ
-           background-color: #ffffff !important; ← CÓ
-          ">
-
-doc-content-dang-bai-quan-ly (❌ LỖI):
-<td style="border: 1px solid #fbcfe8;
-           padding: 12px;
-          ">                                     ← THIẾU color, THIẾU background
+doc-phong-marketing (✅):              san-xuat-video (❌):
+<table style="...">                    <div style="bg:#fff; overflow:hidden">
+  <tr><th border-right>...</th></tr>     <table class="premium-table">
+  <tr><td border-right>...</td></tr>       <tr><th NO border-right>...</th></tr>
+</table>                                   <tr><td NO border-right>...</td></tr>
+                                         </table>
+                                       </div>  ← WRAPPER gây white gap!
 ```
 
-### Luồng lỗi:
-```
-HTML không có color → thừa kế .doc-reader → var(--gray-900) = #FFFFFF
-HTML không có bg    → CSS fallback → #ffffff
-→ Kết quả: Text #FFFFFF (trắng) trên nền #ffffff (trắng) → ẨN!
-```
-
-## Đề xuất Sửa lỗi (Proposed Fixes)
-
-### ⭐ Phương án Khuyến nghị: Cập nhật content_html trong database
-Viết script chuyển đổi HTML của `doc-content-dang-bai-quan-ly` để:
-1. Mỗi `<td>` PHẢI có `color: #0f172a !important; background-color: #ffffff !important;`.
-2. Mỗi `<th>` giữ nguyên bg header nhạt nhưng đổi sang header đậm giống doc-phong-marketing.
-3. Đồng thời revert CSS Round 3/4 (bỏ `td:not([style*="color"])` hack) vì đã xử lý triệt để ở mức dữ liệu.
-
-### CSS sẽ giữ lại:
-- Chỉ giữ layout rules (width, border-collapse, border-radius, overflow, box-shadow, margin).
-- Bỏ tất cả color/background/font-weight hacks.
+## Đề xuất Sửa lỗi
+1. Xóa wrapper `<div>` bọc ngoài bảng.
+2. Xóa `<style>` block + class `premium-table`.
+3. Thêm `border-right` cho `<th>` và `<td>` (trừ cột cuối).
+4. Thêm `border`, `border-radius`, `overflow: hidden` trực tiếp vào `<table>`.
 
 ## Kế hoạch Xác minh
-1. So sánh visual giữa `dang-bai` và `phong-marketing` — phải giống nhau.
-2. Kiểm tra `san-xuat-video` và `product-training` không bị ảnh hưởng.
+- Fetch HTML sau khi update và đếm số `<td>` có `border-right`.
+- So sánh visual trên Vercel.
