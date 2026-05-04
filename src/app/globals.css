@@ -774,13 +774,13 @@ h1, h2, h3, h4, h5, h6 {
   width: 100% !important;
   border-collapse: separate !important;
   border-spacing: 0 !important;
-  margin-bottom: 24px !important;
-  background-color: #ffffff !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 0 0 1px var(--gray-200), 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--gray-200), 0 2px 8px rgba(0,0,0,0.10);
+  margin-bottom: 24px;
 }
 
+/* Cell base — chỉ layout, KHÔNG ép color/background */
 .doc-reader th,
 .doc-reader td {
   text-align: left;
@@ -789,21 +789,28 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
-.doc-reader th {
+/* Fallback cho cell KHÔNG có inline color (dang-bai case) */
+.doc-reader td:not([style*="color"]) {
+  color: #1e293b !important;
+}
+
+/* Fallback cho cell KHÔNG có inline background */
+.doc-reader td:not([style*="background"]) {
+  background-color: #ffffff;
+}
+
+/* Header fallback — chỉ khi header KHÔNG có inline background */
+.doc-reader th:not([style*="background"]) {
   background-color: #be185d;
-  color: #ffffff !important;
-  padding: 14px !important;
+  color: #ffffff;
   font-weight: 700;
   font-size: 13px;
 }
 
-.doc-reader td {
-  padding: 14px !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-}
-
-.doc-reader tr:last-child td {
-  border-bottom: none !important;
+/* Fix white gap: table bên trong wrapper div có overflow:hidden */
+.doc-reader div[style*="overflow: hidden"] > table,
+.doc-reader div[style*="overflow:hidden"] > table {
+  margin-bottom: 0 !important;
 }
 
 /* ============== TABLE ============== */
