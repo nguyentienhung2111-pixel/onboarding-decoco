@@ -1,7 +1,7 @@
 # Báo cáo Lỗi — Round 3
 
 ## Trạng thái
-ĐANG SỬA CHỮA
+ĐÃ GIẢI QUYẾT (Xác minh bởi Browser Subagent)
 
 ## Tiêu đề Lỗi
 Bảng trong tài liệu bị lỗi text ẩn, mất đường kẻ header (dang-bai) và quay lại khoảng trắng đáy (san-xuat-video) sau đợt fix CSS Round 2.

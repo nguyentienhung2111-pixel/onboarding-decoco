@@ -789,9 +789,16 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.55;
 }
 
-/* Fallback cho cell KHÔNG có inline color (dang-bai case) */
+/* Fallback cho cell KHÔNG có inline color (dang-bai case) — Chuyển sang đen và Bold */
 .doc-reader td:not([style*="color"]) {
-  color: #1e293b !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* Tương tự cho th nếu không có inline color */
+.doc-reader th:not([style*="color"]) {
+  color: #000000 !important;
+  font-weight: 700 !important;
 }
 
 /* Fallback cho cell KHÔNG có inline background */
