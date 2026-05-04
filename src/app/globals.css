@@ -775,7 +775,7 @@ h1, h2, h3, h4, h5, h6 {
   border-collapse: separate !important;
   border-spacing: 0 !important;
   background-color: transparent !important;
-  margin-bottom: 24px;
+  margin-bottom: 0 !important;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--gray-200), 0 2px 8px rgba(0,0,0,0.10);

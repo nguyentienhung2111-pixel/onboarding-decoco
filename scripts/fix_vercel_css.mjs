@@ -14,11 +14,11 @@ async function update() {
     width: 100%;
     border-collapse: separate !important;
     border-spacing: 0 !important;
-    margin: 24px 0;
+    margin: 0 !important; /* Fix: No margin inside the wrapper div */
     border: 1px solid #e2e8f0 !important;
     border-radius: 12px !important;
     overflow: hidden !important;
-    background-color: #ffffff !important;
+    background-color: transparent !important; /* Fix: No white background on table element */
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
   }
   .premium-table th, .premium-table td {
