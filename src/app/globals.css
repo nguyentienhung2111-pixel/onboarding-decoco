@@ -771,7 +771,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .doc-reader table {
-  width: 100%;
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background-color: transparent !important;
   margin-bottom: 24px;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -785,6 +788,12 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   vertical-align: middle;
   line-height: 1.55;
+}
+
+.doc-reader table tbody,
+.doc-reader table thead,
+.doc-reader table tfoot {
+  background-color: transparent;
 }
 
 .doc-reader th {
