@@ -1,76 +1,104 @@
-# BUG REPORT: Extra White Space at Bottom of Tables
+# Báo cáo Lỗi
+## Trạng thái
+ĐANG SỬA CHỮA
 
-> **Status:** RESOLVED (Round 2) — `margin-bottom: 24px` on `.doc-reader table` removed; the inline `<style>` block in `scripts/fix_vercel_css.mjs` updated so any future re-upload of the doc content will not re-introduce the wrapper-gap.
+## Tiêu đề Lỗi
+Bảng bị mất đường kẻ đáy, hở góc dưới và dính vào nội dung phía sau sau đợt cập nhật CSS Round 2.
 
-## Description
-Tables rendered within the onboarding documents (via the `.doc-reader` component) exhibited an unwanted ~24px white gap at the bottom, inside the rounded border/shadow container. The gap persisted even after the round-1 fix that applied `border-collapse: separate` and `background: transparent` to `<table>`.
+## Mô tả Lỗi
+Sau khi áp dụng bản vá "Round 2" để sửa khoảng trắng thừa dưới bảng, một số tác dụng phụ nghiêm trọng đã xuất hiện trên các trang tài liệu khác (`doc-content-dang-bai-quan-ly`, `doc-content-product-training`):
+1.  **Mất đường kẻ đáy:** Các bảng không hiển thị rõ đường viền phía dưới cùng.
+2.  **Hở góc dưới:** Do sử dụng `border-collapse: separate` và `background: transparent`, phần góc bo tròn của bảng bị lộ nền tối của ứng dụng (tạo cảm giác bị hở) thay vì liền mạch với màu của các ô.
+3.  **Dính nội dung:** Thuộc tính `margin-bottom: 0 !important` áp dụng toàn cục cho bảng trong `.doc-reader` khiến các bảng không có khoảng cách với tiêu đề hoặc đoạn văn bên dưới.
 
-## Visual Evidence
-A ~24px white strip appears below the last row but *inside* the rounded border container. Most visible in `doc-content-san-xuat-video`.
+## Các bước tái hiện
+1.  Mở tài liệu `doc-content-dang-bai-quan-ly` hoặc `doc-content-product-training`.
+2.  Cuộn đến các bảng nội dung.
+3.  Quan sát viền dưới, góc dưới và khoảng cách với khối nội dung tiếp theo.
 
-## Root Cause Analysis (Round 2 — actually causal)
-1.  **Margin lived inside the rounded container.** Global CSS set `margin-bottom: 24px` on every `.doc-reader table`. When the document HTML (or its embedded inline `<style>`) gives the `<table>` a white background and a rounded outer border, the table's own bottom margin shifts the next sibling 24px down — and because the rounded container *is* the table, that 24px sits as an empty white strip below the last row, inside the box-shadow ring.
-2.  **Inline `<style>` reinforced the problem on `doc-content-san-xuat-video`.** The script `scripts/fix_vercel_css.mjs` previously embedded:
-    ```css
-    .premium-table {
-      margin: 24px 0;
-      background-color: #ffffff !important;
-      ...
-    }
-    ```
-    Both halves of the bug came from this — the margin gave 24px of empty space below the table; the white background made that space visible.
-3.  **Why round-1 didn't fully fix it.** Round-1 zeroed the *table-level* background and forced `border-collapse: separate`, which fixed corner-clipping artifacts and bg leak from the table element itself. But the table-level margin and the inline `.premium-table` rule (which also has `!important`) were untouched, so a 24px gap with white fill remained whenever that inline style was active.
+## Kết quả Thực tế vs Kết quả Mong đợi
+- **Thực tế:** Bảng dính sát vào text bên dưới, góc bo tròn bị đen (lộ nền), viền đáy mờ nhạt hoặc mất hẳn.
+- **Mong đợi:** Bảng có khoảng cách 24px với nội dung dưới, viền đáy rõ nét, các góc bo tròn kín khít và đồng màu với nội dung bảng.
 
-## Impacted Files
-- `src/app/globals.css` — `.doc-reader table` margin rule.
-- `scripts/fix_vercel_css.mjs` — the inline `<style>` block embedded in Supabase document content.
+## Ngữ cảnh & Môi trường
+- Giao diện: Dark mode (hệ thống) với nội dung tài liệu có nền sáng/trắng.
+- Trình duyệt: Chromium-based (Vercel Production).
+- File liên quan: `src/app/globals.css` (dòng 773-782).
 
-## Applied Fix
+---
 
-### 1. `src/app/globals.css` (line 778)
+## Phân tích Nguyên nhân Gốc rễ (Root Cause Analysis)
+Lỗi do quy tắc CSS quá tiêu cực (aggressive) được thêm vào để sửa lỗi "white gap" trước đó:
+
+```css
+/* globals.css */
+.doc-reader table {
+  border-collapse: separate !important;   /* Gây hở góc nếu cell không có bg */
+  background-color: transparent !important; /* Lộ nền tối ở góc bo tròn */
+  margin-bottom: 0 !important;           /* Làm dính nội dung */
+}
+```
+
+### Luồng lỗi:
+`Table (Transparent)` -> `Cell (White)` -> `Rounded Corner (Transparent Table + White Cell)`
+=> Tại góc bo tròn, Cell không phủ hết được phần bo của Table, dẫn đến lộ nền tối của `doc-reader`.
+
+### Minh họa (ASCII):
+```
+Table Boundary (Rounded)
+/-------------------\
+| Cell White Background |
+|                       |
+\_______________________/  <-- Góc này bị "hở" vì Cell không bo tròn 
+                               cùng lúc với Table.
+```
+
+---
+
+## Đề xuất Sửa lỗi (Proposed Fixes)
+
+### Phương án: Chuyển Style Premium vào globals.css (Khuyến nghị)
+Thay vì inject thẻ `<style>` vào từng tài liệu (dễ gây xung đột và khó quản lý), chúng ta sẽ đưa các quy tắc của `.premium-table` vào `globals.css` và áp dụng chúng một cách có hệ thống.
+
+1.  **Chỉnh sửa `globals.css`**:
+    - Trả lại `margin-bottom: 24px` cho bảng để có khoảng cách với nội dung dưới.
+    - Thiết lập `background-color: #ffffff` cho bảng để xử lý lỗi hở góc.
+    - Đảm bảo hàng cuối cùng vẫn có đường kẻ đáy nếu không nằm trong wrapper.
+    - Thêm các utility class `.table-slate`, `.table-blue`, `.table-pink` để đổi màu header dễ dàng.
+
+2.  **Cập nhật Content**:
+    - Chạy script chuẩn hóa HTML của tất cả tài liệu để sử dụng class `.premium-table` thay vì dùng inline style lộn xộn.
+
+### Chi tiết CSS dự kiến trong `globals.css`:
 ```css
 .doc-reader table {
   width: 100% !important;
   border-collapse: separate !important;
   border-spacing: 0 !important;
-  background-color: transparent !important;
-  margin-bottom: 0 !important;          /* WAS: margin-bottom: 24px; */
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 0 0 1px var(--gray-200), 0 2px 8px rgba(0,0,0,0.10);
+  margin-bottom: 24px !important; /* Phục hồi khoảng cách */
+  background-color: #ffffff !important; /* Sửa lỗi hở góc */
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 0 1px var(--gray-200), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.doc-reader th {
+  background-color: #be185d; /* Mặc định màu pink */
+  color: #ffffff !important;
+  padding: 14px !important;
+}
+
+.doc-reader td {
+  padding: 14px !important;
+  border-bottom: 1px solid #f1f5f9 !important; /* Đảm bảo có line đáy */
+}
+
+.doc-reader tr:last-child td {
+  border-bottom: none !important; /* Hàng cuối không cần line vì đã có border của table */
 }
 ```
-Vertical rhythm between a table and the next block is preserved by the next element's `margin-top` (e.g. `.doc-reader h3 { margin: 28px 0 12px 0 }`, `.doc-reader h4 { margin: 20px 0 8px 0 }`). All current document layouts have an `<h3>`/`<h4>` between consecutive tables, so removing the table's bottom margin does not collapse spacing in practice.
 
-### 2. `scripts/fix_vercel_css.mjs`
-The embedded `<style>` block was updated:
-```css
-.premium-table {
-  margin: 0 !important;                  /* WAS: margin: 24px 0; */
-  background-color: transparent !important; /* WAS: #ffffff !important; */
-  ...
-}
-```
-This change does **not** retroactively update the content already stored in Supabase — it just ensures that the next time someone runs `node scripts/fix_vercel_css.mjs`, the embedded styles are correct. The currently-stored `content_html` for `doc-content-san-xuat-video` still has the old inline `<style>` with `margin: 24px 0` and `background-color: #ffffff !important`, but the round-2 globals.css change overrides the global table rule and the visible white-gap symptom is gone because:
-- The global `.doc-reader table { background-color: transparent !important }` defeats the inline `<style>` setting `background-color: #ffffff !important` (both have `!important`; the global rule's selector specificity is higher than the class-only `.premium-table`).
-- The global `margin-bottom: 0 !important` similarly defeats the inline `margin: 24px 0` (since the inline `.premium-table` doesn't use `!important` on margin).
-
-So the production fix is *fully delivered by the globals.css change alone*. Re-running the script is optional cleanup, not required.
-
-## Verification
-1. After deploy, open `/documents/doc-content-san-xuat-video`. The white strip at the bottom of every table is gone.
-2. DevTools → Inspect any `.doc-reader table` → Computed: `margin-bottom: 0px`, `background-color: rgba(0, 0, 0, 0)`.
-3. Spacing between consecutive tables is still natural (driven by `<h3>`/`<h4>` margin-top).
-4. Per-document brand colors on cell borders/headers still render correctly (we never touched cell-level rules).
-
-## History
-- `78a6067` — initial premium table styling (rounded corners + shadow).
-- `401aa71` — applied `border-radius` directly to corner cells.
-- `8540c6a` — simplified CSS to stop conflicting with inline styles (stripped per-cell border rules and `border-collapse: separate`).
-- `ca12c3f` — Round 1: re-introduced `border-collapse: separate !important`, `border-spacing: 0 !important`, `background-color: transparent !important` on `.doc-reader table` only. Fixed corner-clipping and table-element bg leak, but a residual 24px gap remained.
-- `[this fix — Round 2]` — removed `margin-bottom: 24px` from `.doc-reader table` (made it `0 !important`); updated `scripts/fix_vercel_css.mjs` inline style to match (margin: 0, transparent bg) so future re-uploads stay clean.
-
-## Lessons for future similar bugs
-- Inline `<style>` blocks embedded inside content stored in Supabase are a hidden third layer of CSS — easy to forget when debugging visual issues. When a fix in `globals.css` doesn't take effect, grep `scripts/*.mjs` for inline `<style>` blocks that the content might carry.
-- For elements that act as their own visual container (rounded corners + box-shadow + bg), avoid setting `margin-bottom` on the element itself. Either let the next sibling control top spacing, or wrap the element and put margin on the wrapper.
-- When global CSS uses `!important` against inline styles, remember that **selector specificity still arbitrates between two `!important` declarations**. `.doc-reader table` (one class + one type) beats `.premium-table` (one class) — that's why the global `background-color: transparent !important` wins over the inline `.premium-table { background-color: #ffffff !important }`.
+## Kế hoạch Xác minh
+1.  **Verify Visuals**: Kiểm tra tất cả 3 trang tài liệu (`san-xuat-video`, `dang-bai`, `product-training`) xem bảng đã đồng nhất chưa.
+2.  **Verify Spacing**: Đảm bảo sau bảng có khoảng trống hợp lý với block tiếp theo.
+3.  **Verify Integrity**: Kiểm tra kỹ các góc bo tròn và đường kẻ đáy của hàng cuối cùng.
