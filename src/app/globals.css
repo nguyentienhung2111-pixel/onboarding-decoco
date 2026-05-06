@@ -901,6 +901,7 @@ h1, h2, h3, h4, h5, h6 {
 .doc-content div[style*="background"],
 .doc-content p[style*="background"],
 .doc-content span[style*="background"],
+.doc-content blockquote[style*="background"],
 .doc-content tr[style*="background"],
 .doc-content th[style*="background"],
 .doc-content td[style*="background"] {
@@ -910,6 +911,7 @@ h1, h2, h3, h4, h5, h6 {
 .doc-content div[style*="background"] *,
 .doc-content p[style*="background"] *,
 .doc-content span[style*="background"] *,
+.doc-content blockquote[style*="background"] *,
 .doc-content tr[style*="background"] *,
 .doc-content th[style*="background"] *,
 .doc-content td[style*="background"] * {
@@ -942,8 +944,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Giữ nguyên màu cho thẻ strong/bold bên trong block — đậm hơn một chút */
 .doc-content div[style*="background"] strong,
 .doc-content p[style*="background"] strong,
+.doc-content blockquote[style*="background"] strong,
 .doc-content div[style*="background"] b,
-.doc-content p[style*="background"] b {
+.doc-content p[style*="background"] b,
+.doc-content blockquote[style*="background"] b {
   color: #0f0f23 !important;
 }
 
@@ -955,7 +959,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Đảm bảo link bên trong block vẫn nhìn thấy được */
 .doc-content div[style*="background"] a,
-.doc-content p[style*="background"] a {
+.doc-content p[style*="background"] a,
+.doc-content blockquote[style*="background"] a {
   color: #7c3aed !important;
   text-decoration: underline;
 }
