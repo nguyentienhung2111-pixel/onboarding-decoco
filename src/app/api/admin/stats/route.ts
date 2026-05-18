@@ -26,8 +26,9 @@ export async function GET() {
       const userDocs = publishedDocs.filter(doc => {
         const a = doc.assignedTo;
         if (a.isGeneral) return true;
-        if (a.departmentId && a.departmentId === user.departmentId) return true;
-        if (a.teamId && a.teamId === user.teamId) return true;
+        if (doc.docType === 'team') return a.teamId === user.teamId;
+        if (doc.docType === 'department') return a.departmentId === user.departmentId;
+        if (doc.docType === 'position') return a.positionId === user.positionId;
         return false;
       });
 
