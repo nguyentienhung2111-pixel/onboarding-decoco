@@ -138,9 +138,9 @@ export async function getDocumentsForUser(user: {
   return (data || [])
     .filter(doc => {
       if (doc.is_general) return true;
-      if (doc.assigned_department_id && doc.assigned_department_id === user.departmentId) return true;
-      if (doc.assigned_team_id && doc.assigned_team_id === user.teamId) return true;
-      if (doc.assigned_position_id && doc.assigned_position_id === user.positionId) return true;
+      if (doc.doc_type === 'team') return doc.assigned_team_id === user.teamId;
+      if (doc.doc_type === 'department') return doc.assigned_department_id === user.departmentId;
+      if (doc.doc_type === 'position') return doc.assigned_position_id === user.positionId;
       return false;
     })
     .map(mapDocument);
