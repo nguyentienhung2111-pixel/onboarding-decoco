@@ -33,7 +33,10 @@ export async function GET() {
       });
 
       const userProgress = allProgress.filter(p => p.userId === user.id);
-      const completedDocs = userProgress.filter(p => p.status === 'quiz_passed').length;
+      const assignedDocIds = new Set(userDocs.map(d => d.id));
+      const completedDocs = userProgress.filter(p =>
+        p.status === 'quiz_passed' && assignedDocIds.has(p.documentId)
+      ).length;
       const progressPct = userDocs.length > 0 ? Math.round((completedDocs / userDocs.length) * 100) : 0;
 
       const dept = orgData.departments.find(d => d.id === user.departmentId);
