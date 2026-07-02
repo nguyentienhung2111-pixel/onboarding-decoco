@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Users, BookOpen, Trophy, TrendingUp, BarChart3, Clock } from 'lucide-react';
+import { Users, BookOpen, Trophy, TrendingUp, BarChart3, Clock, RotateCcw } from 'lucide-react';
 import type { AdminStatsData, AdminUserRow } from '@/lib/types';
 
 function StatusBadge({ status }: { status: string }) {
@@ -17,6 +17,9 @@ function StatusBadge({ status }: { status: string }) {
 export default function AdminDashboardPage() {
   const [data, setData] = useState<AdminStatsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedDept, setSelectedDept] = useState('');
+  const [selectedTeam, setSelectedTeam] = useState('');
+  const [selectedPosition, setSelectedPosition] = useState('');
 
   useEffect(() => {
     fetch('/api/admin/stats')
@@ -35,6 +38,31 @@ export default function AdminDashboardPage() {
   }
 
   if (!data) return <div>Không thể tải dữ liệu.</div>;
+
+  // Danh sách option động (phân cấp): Phòng ban → Team → Vị trí
+  const departments = Array.from(new Set(data.users.map(u => u.department).filter(Boolean)));
+  const teams = Array.from(new Set(
+    data.users
+      .filter(u => !selectedDept || u.department === selectedDept)
+      .map(u => u.team)
+      .filter(Boolean)
+  ));
+  const positions = Array.from(new Set(
+    data.users
+      .filter(u => (!selectedDept || u.department === selectedDept) && (!selectedTeam || u.team === selectedTeam))
+      .map(u => u.position)
+      .filter(Boolean)
+  ));
+
+  const filteredUsers = data.users.filter(user => {
+    const matchDept = !selectedDept || user.department === selectedDept;
+    const matchTeam = !selectedTeam || user.team === selectedTeam;
+    const matchPos = !selectedPosition || user.position === selectedPosition;
+    return matchDept && matchTeam && matchPos;
+  });
+
+  const hasFilter = Boolean(selectedDept || selectedTeam || selectedPosition);
+  const clearFilters = () => { setSelectedDept(''); setSelectedTeam(''); setSelectedPosition(''); };
 
   return (
     <div className="animate-fade-in-up">
@@ -97,7 +125,48 @@ export default function AdminDashboardPage() {
       <div className="card" style={{ overflow: 'hidden' }}>
         <div style={{ padding: '20px 24px', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: '18px', color: '#F9FAFB' }}>Nhân viên mới</h2>
-          <span style={{ fontSize: '13px', color: '#6B6D8A' }}>{data.users.length} người</span>
+          <span style={{ fontSize: '13px', color: '#6B6D8A' }}>{filteredUsers.length}/{data.users.length} người</span>
+        </div>
+
+        {/* Bộ lọc: Phòng ban → Team → Vị trí (client-side, phân cấp) */}
+        <div style={{ padding: '16px 24px', borderBottom: '1px solid #e5e7eb', display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+          <select
+            value={selectedDept}
+            onChange={e => { setSelectedDept(e.target.value); setSelectedTeam(''); setSelectedPosition(''); }}
+            style={{ ...selectStyle, width: 'auto', minWidth: '180px' }}
+          >
+            <option value="" style={optionStyle}>Tất cả phòng ban</option>
+            {departments.map(d => <option key={d} value={d} style={optionStyle}>{d}</option>)}
+          </select>
+          <select
+            value={selectedTeam}
+            onChange={e => { setSelectedTeam(e.target.value); setSelectedPosition(''); }}
+            style={{ ...selectStyle, width: 'auto', minWidth: '180px' }}
+          >
+            <option value="" style={optionStyle}>Tất cả team</option>
+            {teams.map(t => <option key={t} value={t} style={optionStyle}>{t}</option>)}
+          </select>
+          <select
+            value={selectedPosition}
+            onChange={e => setSelectedPosition(e.target.value)}
+            style={{ ...selectStyle, width: 'auto', minWidth: '180px' }}
+          >
+            <option value="" style={optionStyle}>Tất cả vị trí</option>
+            {positions.map(p => <option key={p} value={p} style={optionStyle}>{p}</option>)}
+          </select>
+          {hasFilter && (
+            <button
+              onClick={clearFilters}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '10px 14px', borderRadius: '8px',
+                border: '1px solid #2D2F45', background: '#141627',
+                color: '#F9FAFB', fontSize: '14px', cursor: 'pointer',
+              }}
+            >
+              <RotateCcw size={15} /> Xoá bộ lọc
+            </button>
+          )}
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -114,7 +183,7 @@ export default function AdminDashboardPage() {
               </tr>
             </thead>
             <tbody>
-              {data.users.map((user: AdminUserRow, i: number) => (
+              {filteredUsers.map((user: AdminUserRow, i: number) => (
                 <tr key={user.id} className="animate-slide-in" style={{ animationDelay: `${i * 0.05}s` }}>
                   <td>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -149,10 +218,10 @@ export default function AdminDashboardPage() {
                   </td>
                 </tr>
               ))}
-              {data.users.length === 0 && (
+              {filteredUsers.length === 0 && (
                 <tr>
                   <td colSpan={7} style={{ textAlign: 'center', padding: '40px', color: '#6B6D8A' }}>
-                    Chưa có nhân viên mới
+                    {hasFilter ? 'Không có nhân viên nào khớp bộ lọc' : 'Chưa có nhân viên mới'}
                   </td>
                 </tr>
               )}
@@ -163,3 +232,16 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
+
+const selectStyle: React.CSSProperties = {
+  width: '100%', padding: '10px 14px', borderRadius: '8px',
+  border: '1px solid #2D2F45', background: '#141627',
+  backgroundColor: '#141627',
+  color: '#F9FAFB', fontSize: '14px', outline: 'none',
+  appearance: 'none', boxSizing: 'border-box', cursor: 'pointer',
+};
+
+const optionStyle: React.CSSProperties = {
+  background: '#1E2035',
+  color: '#F9FAFB',
+};
