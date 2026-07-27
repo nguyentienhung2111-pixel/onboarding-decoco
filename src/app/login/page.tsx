@@ -12,6 +12,42 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Chế độ giao diện: đăng nhập hoặc quên mật khẩu
+  const [mode, setMode] = useState<'login' | 'forgot'>('login');
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotError, setForgotError] = useState('');
+  const [forgotMessage, setForgotMessage] = useState('');
+  const [forgotLoading, setForgotLoading] = useState(false);
+
+  async function handleForgotSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setForgotError('');
+    setForgotMessage('');
+    setForgotLoading(true);
+
+    try {
+      const res = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: forgotEmail }),
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        setForgotError(data.error.message);
+        setForgotLoading(false);
+        return;
+      }
+
+      setForgotMessage(data.message || 'Mật khẩu mới đã được gửi tới email của bạn.');
+      setForgotLoading(false);
+    } catch {
+      setForgotError('Có lỗi xảy ra. Vui lòng thử lại.');
+      setForgotLoading(false);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
@@ -68,7 +104,8 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Form */}
+        {/* Form đăng nhập */}
+        {mode === 'login' && (
         <form onSubmit={handleSubmit}>
           <div className="input-group" style={{ marginBottom: '16px' }}>
             <label className="input-label" htmlFor="email">Email</label>
@@ -85,7 +122,16 @@ export default function LoginPage() {
           </div>
 
           <div className="input-group" style={{ marginBottom: '24px' }}>
-            <label className="input-label" htmlFor="password">Mật khẩu</label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label className="input-label" htmlFor="password">Mật khẩu</label>
+              <button
+                type="button"
+                onClick={() => { setMode('forgot'); setError(''); setForgotEmail(email); setForgotError(''); setForgotMessage(''); }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#a78bfa', fontSize: '13px', padding: 0 }}
+              >
+                Quên mật khẩu?
+              </button>
+            </div>
             <div style={{ position: 'relative' }}>
               <input
                 id="password"
@@ -144,27 +190,78 @@ export default function LoginPage() {
             )}
           </button>
         </form>
+        )}
 
-        {/* Demo accounts */}
-        <div style={{
-          marginTop: '28px', padding: '16px',
-          background: '#f9fafb', borderRadius: '12px',
-          border: '1px solid #e5e7eb'
-        }}>
-          <p style={{ fontSize: '12px', fontWeight: 600, color: '#9CA0B8', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Tài khoản demo
+        {/* Form quên mật khẩu */}
+        {mode === 'forgot' && (
+        <form onSubmit={handleForgotSubmit}>
+          <p style={{ fontSize: '14px', color: '#9CA0B8', marginBottom: '20px' }}>
+            Nhập email đã đăng ký. Hệ thống sẽ tạo mật khẩu mới và gửi về email của bạn.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#C2C5D6' }}>
-              <span>Admin:</span>
-              <code style={{ background: '#e5e7eb', padding: '1px 6px', borderRadius: '4px', fontSize: '12px' }}>admin@decoco.vn / admin123</code>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#C2C5D6' }}>
-              <span>Nhân viên:</span>
-              <code style={{ background: '#e5e7eb', padding: '1px 6px', borderRadius: '4px', fontSize: '12px' }}>linh@decoco.vn / linh123</code>
-            </div>
+
+          <div className="input-group" style={{ marginBottom: '20px' }}>
+            <label className="input-label" htmlFor="forgot-email">Email</label>
+            <input
+              id="forgot-email"
+              type="email"
+              className="input"
+              placeholder="you@decoco.vn"
+              value={forgotEmail}
+              onChange={e => setForgotEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
           </div>
-        </div>
+
+          {forgotError && (
+            <div style={{
+              padding: '10px 14px', background: '#fee2e2', color: '#dc2626',
+              borderRadius: '8px', fontSize: '13px', marginBottom: '16px',
+              border: '1px solid #fecaca'
+            }}>
+              {forgotError}
+            </div>
+          )}
+
+          {forgotMessage && (
+            <div style={{
+              padding: '10px 14px', background: '#dcfce7', color: '#16a34a',
+              borderRadius: '8px', fontSize: '13px', marginBottom: '16px',
+              border: '1px solid #bbf7d0'
+            }}>
+              {forgotMessage}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn btn-primary btn-lg"
+            disabled={forgotLoading}
+            style={{ width: '100%', marginBottom: '12px' }}
+          >
+            {forgotLoading ? (
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{
+                  width: '18px', height: '18px', border: '2px solid rgba(255,255,255,0.3)',
+                  borderTopColor: 'white', borderRadius: '50%',
+                  animation: 'spin 0.6s linear infinite',
+                }} />
+                Đang gửi...
+              </span>
+            ) : (
+              'Gửi mật khẩu mới'
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => { setMode('login'); setForgotError(''); setForgotMessage(''); }}
+            style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', color: '#9CA0B8', fontSize: '14px', padding: '6px' }}
+          >
+            ← Quay lại đăng nhập
+          </button>
+        </form>
+        )}
       </div>
 
       <style jsx>{`
