@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const sessionCookie = request.cookies.get('decoco_session');
 
   // Public routes
-  if (pathname === '/login' || pathname.startsWith('/api/auth/login')) {
+  if (pathname === '/login' || pathname.startsWith('/api/auth/login') || pathname.startsWith('/api/auth/forgot-password')) {
     if (sessionCookie && pathname === '/login') {
       return NextResponse.redirect(new URL('/dashboard', request.url));
     }
