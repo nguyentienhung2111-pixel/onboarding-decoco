@@ -37,9 +37,18 @@ export async function POST(request: Request) {
     const newPasswordHash = await hashPassword(newPassword);
 
     // Gửi email TRƯỚC. Nếu provider đã cấu hình nhưng gửi lỗi -> ném lỗi -> KHÔNG đổi mật khẩu (tránh khóa tài khoản).
-    await sendPasswordResetEmail(user.email, user.fullName, newPassword);
+    const { delivered } = await sendPasswordResetEmail(user.email, user.fullName, newPassword);
 
-    // Chỉ cập nhật DB sau khi bước gửi email không ném lỗi.
+    // Ở Production, nếu email KHÔNG thực sự được gửi (chưa cấu hình RESEND_API_KEY) thì
+    // KHÔNG đổi mật khẩu — tránh trường hợp user bị khóa vì không nhận được mật khẩu mới.
+    if (!delivered && process.env.NODE_ENV === 'production') {
+      return NextResponse.json(
+        { success: false, error: { code: 'EMAIL_NOT_CONFIGURED', message: 'Hệ thống gửi email chưa được cấu hình. Vui lòng liên hệ quản trị viên.' } },
+        { status: 503 }
+      );
+    }
+
+    // Chỉ cập nhật DB sau khi email đã gửi (hoặc ở môi trường dev — đã log mật khẩu ra console).
     await updateUserPassword(user.id, newPasswordHash);
 
     return NextResponse.json({
