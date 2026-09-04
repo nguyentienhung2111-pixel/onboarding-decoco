@@ -1,0 +1,40 @@
+name: Supabase Keepalive
+
+# Giữ project Supabase free-tier không bị auto-pause (mốc 7 ngày inactivity).
+# Cơ chế: mỗi lần chạy sẽ UPSERT 1 dòng vào bảng public.keepalive
+# => đây là thao tác GHI thật => chắc chắn tính là database activity.
+
+on:
+  schedule:
+    # Chạy 08:00 UTC (= 15:00 giờ VN) vào Thứ 2, Thứ 4, Thứ 6.
+    # 3 lần/tuần => luôn có hoạt động cách nhau tối đa 3 ngày, an toàn dưới mốc 7 ngày.
+    - cron: '0 8 * * 1,3,5'
+  # Cho phép bấm chạy tay từ tab Actions để test.
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase (ghi vào bảng keepalive)
+        run: |
+          NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "Thời điểm ping (UTC): $NOW"
+
+          STATUS=$(curl -s -o /tmp/resp.txt -w "%{http_code}" \
+            -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/keepalive" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: resolution=merge-duplicates" \
+            -d "[{\"id\": 1, \"last_ping\": \"$NOW\"}]")
+
+          echo "HTTP status: $STATUS"
+          cat /tmp/resp.txt
+
+          if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 300 ]; then
+            echo "Keepalive thanh cong."
+          else
+            echo "Keepalive that bai (ma $STATUS). Kiem tra lai secrets hoac trang thai project."
+            exit 1
+          fi
